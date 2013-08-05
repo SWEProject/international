@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+     xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">  
+ <h:head><title>Welcome to Compro online application</title></h:head>  
+ <h:body>
+     <h:form>      
+	     <table> 
+		     
+		     <tr>
+		     	<td><h:outputLabel for="name" value="Name : " /></td>
+                        <td><p:inputText id="name" value="#{userMB.name}" label="Name">
+		     			<f:validateLength minimum="1" /> 
+                                        <f:validateRequired id="name"/>
+                                       <f:validator validatorId="com.compro.utilities.NameValidator"/>
+		     			<p:ajax event="blur" update="nameMsg" />
+		     		</p:inputText>
+                            <h:message id="nameMsg" for="name" style="color: red"/> 
+		     	</td>
+		     </tr>
+                  <tr>
+		     	<td><h:outputLabel for="mname" value="Middle Name : " /></td>
+                        <td><p:inputText id="mname" value="#{userMB.middlename}" label="Middle Name">
+		     			<f:validateLength minimum="0" /> 
+                                        <f:validator validatorId="com.compro.utilities.NameValidator"/>
+		     			<p:ajax event="blur" update="mnameMsg" />
+		     		</p:inputText>
+		     		<h:message id="mnameMsg" for="mname" style="color: red"/> 
+		     	</td>
+		     </tr>
+		     <tr>
+		     	<td><h:outputLabel for="surname" value="Surname : " /></td>   
+                        <td><p:inputText id="surname" value="#{userMB.surname}" label="Surname"> 
+		     			<f:validateLength minimum="1" /> 
+                                        <f:validateRequired id="surname"/>
+                                        <f:validator validatorId="com.compro.utilities.NameValidator"/>
+		     			<p:ajax event="blur" update="surnameMsg" />  
+		     		</p:inputText>
+		     		<h:message id="surnameMsg" for="surname" style="color: red"/> 
+		     	</td>    
+		     </tr>  
+                     <tr>
+                         <td><h:outputLabel for="email" value="Email : " /></td>
+                         <td><p:inputText id="email" value="#{userMB.email}" required="true" label="Email Address"> 
+		     			
+                                        <f:validator validatorId="com.compro.utilities.EmailValidator"/>
+                                        
+		     		</p:inputText>
+                            <h:message for="email" style="color: red"/> 
+	     		
+		     	</td>
+		     </tr>
+	         <tr>
+		     	<td><p:commandButton id="addUser" value="Add" action="#{userMB.addUser}" ajax="false"/></td>
+		     	
+            <td><p:commandButton id="reset" value="Reset" action="#{userMB.reset}" ajax="false"/></td>
+		   
+                 </tr> 
+               
+	     </table>
+     </h:form>      
+</h:body>
+</html> 
