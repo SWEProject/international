@@ -25,6 +25,7 @@ public class ApplicationDAO {
     static Application getApplicationTemplate() throws SQLException {
         Application appTemplate = null;
         try {
+            System.out.println("Ehsan");
 
 
             ConnectionManager connectionMan = new ConnectionManager();
