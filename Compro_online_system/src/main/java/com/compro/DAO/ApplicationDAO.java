@@ -432,5 +432,87 @@ public class ApplicationDAO {
         }
 
         return saved;
-    }    
+    } 
+       
+       static String checkRules(ApplicationForm applicationForm){
+           String result="undetermined";
+           try {
+            ConnectionManager connectionMan = new ConnectionManager();
+            con = ConnectionManager.dcConnect();
+            con.setAutoCommit(false);
+            
+            String SQL = "select * from field_rule";
+            Statement statement = null;
+            Statement statement2 = null;
+            statement = con.createStatement();
+            statement2 = con.createStatement();
+            ResultSet rs1 = statement.executeQuery(SQL);
+            ResultSet rs2;
+             if (rs1 != null) {
+                 int field_id;
+                 int limit;
+                 String disposition;
+                 String operator;
+                    while (rs1.next()) {
+                    field_id = rs1.getInt("field_id");
+                    limit = rs1.getInt("value");
+                    disposition = rs1.getString("disposition");
+                    operator = rs1.getString("operator");
+                    int value;
+                    String SQL2 = "select * from field_form "
+                    + "where application_form_id = " + applicationForm.getId() 
+                    + " AND field_id = " + field_id;
+                    System.out.println(SQL2);
+                    rs2 = statement2.executeQuery(SQL2);
+                    if (rs2 != null) 
+                    {
+                        if (rs2.next()) 
+                        {
+                            value = rs2.getInt("value");
+                            if(operator.equalsIgnoreCase("g"))
+                            {
+                                if(value>limit)
+                                {
+                                    result = disposition;
+                                    break;
+                                }
+                            }
+                            else if(operator.equalsIgnoreCase("ge")) {
+                                if(value>=limit)
+                                {
+                                    result = disposition;
+                                    break;
+                                }
+                            }
+                            else if(operator.equalsIgnoreCase("le")) {
+                                if(value<=limit)
+                                {
+                                    result = disposition;
+                                    break;
+                                }
+                            }
+                            else if(operator.equalsIgnoreCase("l")) {
+                                if(value<limit)
+                                {
+                                    result = disposition;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            con.commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return result;
+       }
 }
