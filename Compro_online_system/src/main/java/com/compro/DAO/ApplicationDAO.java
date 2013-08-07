@@ -25,17 +25,12 @@ public class ApplicationDAO {
     static Application getApplicationTemplate() throws SQLException {
         Application appTemplate = null;
         try {
-            System.out.println("Ehsan");
-             //test waseem
-            
-            //change 2
-
             ConnectionManager connectionMan = new ConnectionManager();
             con = ConnectionManager.dcConnect();
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = "select * from test.application "
+            String SQL = "select * from application "
                     + "where status = 'active' ";
 
             System.out.println(SQL);
@@ -80,7 +75,7 @@ public class ApplicationDAO {
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = "select * from test.section "
+            String SQL = "select * from section "
                     + "where status = 'active' and application_id = " + appTemplate.getId() + " order by section.order";
 
             System.out.println(SQL);
@@ -123,7 +118,7 @@ public class ApplicationDAO {
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = "select * from test.field "
+            String SQL = "select * from field "
                     + "where status = 'active' and section_id = " + secTemplate.getId() + " order by field.order";
 
             System.out.println(SQL);
@@ -207,7 +202,7 @@ public class ApplicationDAO {
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = "select * from test.field_form "
+            String SQL = "select * from field_form "
                     + "where application_form_id = " + applicationForm.getId();
 
             System.out.println(SQL);
@@ -218,7 +213,7 @@ public class ApplicationDAO {
                 while (rs.next()) {
                     String fieldId = rs.getString("field_id");
                     Field field = null;
-                    String SQL2 = "select * from test.field "
+                    String SQL2 = "select * from field "
                             + "where id = " + fieldId;
 
 
