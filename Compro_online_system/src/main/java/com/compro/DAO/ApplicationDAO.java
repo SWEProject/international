@@ -228,7 +228,7 @@ public class ApplicationDAO {
                     }
 
                     FieldForm fieldForm = new FieldForm(rs.getInt("id"), rs.getString("value"), applicationForm, field);
-
+                    applicationForm.getFieldsValues().put(fieldId, rs.getString("value"));
                 }
             }
 
