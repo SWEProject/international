@@ -36,7 +36,7 @@ public class UserManagedBean implements Serializable {
 	
 	List<User> userList;
 	
-	
+	private int id;
 	private String name;
         private String middlename;
 	private String surname;
@@ -73,6 +73,7 @@ public class UserManagedBean implements Serializable {
 			user.setPassword(getPassword());
                         user.setEmail(getEmail());
 			User u = getUserService().loginUser(user);
+                         setId(u.getId());
 			if(u == null)
                             return ERROR;
                         else    
@@ -198,5 +199,15 @@ public class UserManagedBean implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 	
 }

@@ -36,6 +36,10 @@
 	        <from-outcome>register</from-outcome>
             <to-view-id>/pages/register.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+	        <from-outcome>application</from-outcome>
+            <to-view-id>/pages/application.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
    
 </faces-config>

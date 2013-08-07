@@ -46,13 +46,13 @@
                                 <p class="login button"> 
                                   <p:commandButton id="loginUser" value="Login" action="#{userMB.loginUser}" ajax="false"/>
                                   </p>
-                </h:form>
-                                <p class="change_link">
-                                   Not a member yet ?
-                                <h:form>
-                                    <p:commandButton styleClass="to_register" id="registerUser" value="Register new user" action="#{userMB.redirectToRegister}" ajax="false"/>
-                                </h:form>
+                    <p class="change_link">
+                                   Not yet registered? 
+                                    <p:commandLink value="register" action="register"/>
+                               
                                 </p>
+                </h:form>
+                                
                        </div>
                   </div>
              </div>

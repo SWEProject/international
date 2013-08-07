@@ -15,5 +15,6 @@
 		<property name="facadeDAO" ref="facadeDAO"/>
 	</bean>
     	<bean id="facadeDAO" class="com.compro.DAO.DAOFacade"/>
-    
+        <bean id="ApplicationService" class="com.compro.service.ApplicationService">
+	</bean>
 </beans>
