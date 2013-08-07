@@ -228,7 +228,7 @@ p.change_link{
 	padding: 17px 30px 20px 30px;
 	font-size: 16px	;
 	text-align: right;
-	border-top: 1px solid rgb(219, 229, 232);
+/*	border-top: 1px solid rgb(219, 229, 232);
 	-webkit-border-radius: 0 0  5px 5px;
 	   -moz-border-radius: 0 0  5px 5px;
 	        border-radius: 0 0  5px 5px;
@@ -260,14 +260,14 @@ p.change_link{
 	rgb(225, 234, 235) 15px, 
 	rgb(225, 234, 235) 30px, 
 	rgb(247, 247, 247) 30px
-	);
+	);*/
 }
 #wrapper p.change_link a {
 	display: inline-block;
 	font-weight: bold;
 	background: rgb(247, 248, 241);
 	padding: 2px 6px;
-	color: rgb(29, 162, 193);
+	color: rgb(111, 189, 189);
 	margin-left: 10px;
 	text-decoration: none;
 	-webkit-border-radius: 4px;
@@ -362,8 +362,8 @@ p.change_link{
 /** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
 
 .lt8 #wrapper input{
-	padding: 10px 5px 10px 32px;
-    width: 92%;
+	padding: 10px 5px 3px 32px;
+    width: 75%;
 }
 .lt8 #wrapper input[type=checkbox]{
 	width: 10px;

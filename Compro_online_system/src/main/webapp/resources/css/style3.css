@@ -367,8 +367,8 @@ p.change_link{
 /** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
 
 .lt8 #wrapper input{
-	padding: 10px 5px 10px 32px;
-    width: 92%;
+	padding: 10px 5px 3px 32px;
+    width: 75%;
 }
 .lt8 #wrapper input[type=checkbox]{
 	width: 10px;

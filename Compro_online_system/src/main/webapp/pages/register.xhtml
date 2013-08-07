@@ -4,7 +4,72 @@
      xmlns:p="http://primefaces.org/ui">  
  <h:head><title>Welcome to Compro online application</title></h:head>  
  <h:body>
-     <h:form>      
+     <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"/>
+      <div class="container">
+     <header>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>
+				
+            </header>
+          <section>
+            <div id="container_demo" >
+                  <div id="wrapper">
+                       <div id="login" class="animate form"> 
+                                <h:form> 
+
+                           <h1>Registration</h1> 
+                           <p>
+                           <h:outputLabel for="name" value="Name : " />
+                           <p:inputText id="name" value="#{userMB.name}" label="Name">
+		     			<f:validateLength minimum="1" /> 
+                                        <f:validateRequired id="name"/>
+                                       <f:validator validatorId="com.compro.utilities.NameValidator"/>
+		     			<p:ajax event="blur" update="nameMsg" />
+		     		</p:inputText>
+                            <h:message id="nameMsg" for="name" style="color: red"/>
+                           </p>
+                           <p>
+                              <h:outputLabel for="mname" value="Middle Name : " /> 
+                               <p:inputText id="mname" value="#{userMB.middlename}" label="Middle Name">
+		     			<f:validateLength minimum="0" /> 
+                                        <f:validator validatorId="com.compro.utilities.NameValidator"/>
+		     			<p:ajax event="blur" update="mnameMsg" />
+		     		</p:inputText>
+		     		<h:message id="mnameMsg" for="mname" style="color: red"/>
+                           </p>
+                           <p>
+                             <h:outputLabel for="surname" value="Surname : " /> 
+                             <p:inputText id="surname" value="#{userMB.surname}" label="Surname"> 
+		     			<f:validateLength minimum="1" /> 
+                                        <f:validateRequired id="surname"/>
+                                        <f:validator validatorId="com.compro.utilities.NameValidator"/>
+		     			<p:ajax event="blur" update="surnameMsg" />  
+		     		</p:inputText>
+		     		<h:message id="surnameMsg" for="surname" style="color: red"/> 
+                           </p>
+                           <p>
+                               <h:outputLabel for="email" value="Email : " />
+                               <p:inputText id="email" value="#{userMB.email}" required="true" label="Email Address"> 
+		     			
+                                        <f:validator validatorId="com.compro.utilities.EmailValidator"/>
+                                        
+		     		</p:inputText>
+                            <h:message for="email" style="color: red"/>
+                           </p>
+                           <p>
+                              <p:commandButton id="addUser" value="Add" action="#{userMB.addUser}" ajax="false"/>		     	
+                              <p:commandButton id="reset" value="Reset" action="#{userMB.reset}" ajax="false"/> 
+                           </p>
+                                </h:form>
+                       </div>
+                  </div>
+            </div>
+          </section>
+      </div>
+<!--     <h:form> 
+         
+         
 	     <table> 
 		     
 		     <tr>
@@ -58,6 +123,6 @@
                  </tr> 
                
 	     </table>
-     </h:form>      
+     </h:form>      -->
 </h:body>
 </html> 
