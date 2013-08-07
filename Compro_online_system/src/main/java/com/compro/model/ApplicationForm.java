@@ -6,6 +6,7 @@ package com.compro.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 /**
  *
@@ -19,7 +20,8 @@ public class ApplicationForm {
     private Date lastModifiedDate;
     private int userId;
     private List<FieldForm> fieldsForm  = new ArrayList();
-
+    private HashMap<String,String> fieldsValues = new HashMap();
+    
     public ApplicationForm() {
     }
     
@@ -102,6 +104,13 @@ public class ApplicationForm {
     public void setId(int id) {
         this.id = id;
     }
-    
+
+    public HashMap<String, String> getFieldsValues() {
+        return fieldsValues;
+    }
+
+    public void setFieldsValues(HashMap<String, String> fieldsValues) {
+        this.fieldsValues = fieldsValues;
+    }
     
 }
