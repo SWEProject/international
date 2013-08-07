@@ -26,7 +26,8 @@ public class ApplicationDAO {
         Application appTemplate = null;
         try {
             System.out.println("Ehsan");
-             //test waseem   
+             //test waseem 
+            //test AMIT
 
             ConnectionManager connectionMan = new ConnectionManager();
             con = ConnectionManager.dcConnect();
