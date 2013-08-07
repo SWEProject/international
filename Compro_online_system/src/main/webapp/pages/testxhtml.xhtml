@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/tableLayout.css" rel="stylesheet" type="text/css" />
+        <title>Welcome to Compro online application</title>
+    </h:head>
+
+    <h:body>
+        <table cellspacing="10px">
+            <tr>
+                <td id="top" colspan="2">
+                    <ui:insert name="top"><h3>Compro online application</h3></ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="left">
+                    <ui:insert name="left"></ui:insert>
+                </td>
+                <td id="content">
+                    <ui:insert name="content">
+                      <h:form>   
+                        <table> 
+
+                                <tr>
+                                   <td><h:outputLabel for="name" value="Name : " /></td>
+                                   <td><p:inputText id="name" value="#{userMB.name}" label="Name">
+                                                   <f:validateLength minimum="1" /> 
+                                                   <f:validateRequired id="name"/>
+                                                  <f:validator validatorId="com.compro.utilities.NameValidator"/>
+                                                   <p:ajax event="blur" update="nameMsg" />
+                                           </p:inputText>
+                                       <h:message id="nameMsg" for="name" style="color: red"/> 
+                                   </td>
+                                </tr>
+                             <tr>
+                                   <td><h:outputLabel for="mname" value="Middle Name : " /></td>
+                                   <td><p:inputText id="mname" value="#{userMB.middlename}" label="Middle Name">
+                                                   <f:validateLength minimum="0" /> 
+                                                   <f:validator validatorId="com.compro.utilities.NameValidator"/>
+                                                   <p:ajax event="blur" update="mnameMsg" />
+                                           </p:inputText>
+                                           <h:message id="mnameMsg" for="mname" style="color: red"/> 
+                                   </td>
+                                </tr>
+                                <tr>
+                                   <td><h:outputLabel for="surname" value="Surname : " /></td>   
+                                   <td><p:inputText id="surname" value="#{userMB.surname}" label="Surname"> 
+                                                   <f:validateLength minimum="1" /> 
+                                                   <f:validateRequired id="surname"/>
+                                                   <f:validator validatorId="com.compro.utilities.NameValidator"/>
+                                                   <p:ajax event="blur" update="surnameMsg" />  
+                                           </p:inputText>
+                                           <h:message id="surnameMsg" for="surname" style="color: red"/> 
+                                   </td>    
+                                </tr>  
+                                <tr>
+                                    <td><h:outputLabel for="email" value="Email : " /></td>
+                                    <td><p:inputText id="email" value="#{userMB.email}" required="true" label="Email Address"> 
+
+                                                   <f:validator validatorId="com.compro.utilities.EmailValidator"/>
+
+                                           </p:inputText>
+                                       <h:message for="email" style="color: red"/> 
+
+                                   </td>
+                                </tr>
+                            <tr>
+                                   <td><p:commandButton id="addUser" value="Add" action="#{userMB.addUser}" ajax="false"/></td>
+
+                       <td><p:commandButton id="reset" value="Reset" action="#{userMB.reset}" ajax="false"/></td>
+
+                            </tr> 
+
+                           ${userMB.userList.size()}
+                            <c:forEach var="user" items="${userMB.userList}">
+                            <tr>
+                                <td>${user.name}</td>
+                                <td>${user.email}</td>
+                                <td>${user.toString()}</td>
+                            </tr>
+                                <tr>
+                                    <td>
+                                    <c:if test="#{user.name=='was'}">
+                                        <p:inputText id="#{user.name}" value="#{userMB.middlename}" label="#{user.name}"></p:inputText>
+                                    </c:if>
+                                    
+                                    <c:if test="#{user.name!='was'}">
+                                        <p:password id="#{user.name}" value="#{userMB.middlename}" label="#{user.name}"></p:password>
+                                    </c:if>
+                                   </td>
+                                </tr>
+                          </c:forEach>
+                            
+                        </table>
+                </h:form>  
+                    </ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="bottom" colspan="2">
+                    <ui:insert name="bottom"></ui:insert>
+                </td>
+            </tr>
+        </table>
+    </h:body>
+
+</html>

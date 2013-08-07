@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/tableLayout.css" rel="stylesheet" type="text/css" />
+        <title>Welcome to Compro online application</title>
+    </h:head>
+
+    <h:body>
+        <table cellspacing="10px">
+            <tr>
+                <td id="top" colspan="2">
+                    <ui:insert name="top"><h3>Compro online application</h3></ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="left">
+                    <ui:insert name="left"></ui:insert>
+                </td>
+                <td id="content">
+                    <ui:insert name="content">
+                        <h:form>    
+                            <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
+                            <table>
+                                
+                                <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
+                          
+                             <tr>
+                                <td><h3>${section.name}</h3></td>
+                            </tr>
+                                    <c:forEach var="field" items="${section.fields}">
+                                 <tr>
+                                     <td>#{field.name}</td>
+                                    <td>
+                                     <c:if test="#{field.type=='string'}">
+                                         <input type="text" name="#{field.id}" id="#{field.id}"  value="" label="#{field.name}" ></input>
+                                     </c:if>
+                                    </td>
+                                </tr>
+                           </c:forEach>
+                                    
+                        
+                        </c:forEach>
+                       <tr><td> <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/></td></tr>
+                            </table>
+                        </h:form>
+                    </ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="bottom" colspan="2">
+                    <ui:insert name="bottom"></ui:insert>
+                </td>
+            </tr>
+        </table>
+    </h:body>
+
+</html>
