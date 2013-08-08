@@ -67,4 +67,9 @@ public class DAOFacade {
     public boolean updateApplicationFieldForm(FieldForm fieldForm) {
         return ApplicationDAO.updateApplicationFieldForm(fieldForm);
     } 
+    
+    public boolean insertChange(String applicationId,String fieldId,String value)
+    {
+        return ApplicationDAO.insertChange(applicationId, fieldId, value);
+    }
 }
