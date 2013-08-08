@@ -55,7 +55,7 @@
                        <td> <p:commandButton id="submitApplication" value="Submit" action="#{applicationMB.submitApplication}" ajax="false"/></td>
                        </c:if>
                        <c:if test="#{applicationMB.applicationForm.status =='submitted'}">
-                       <td> <p:commandButton id="requestChangeApplication" value="Change Request" action="#{applicationMB.requestChangeApplication}" ajax="false"/></td>
+                       <td> <p:commandButton id="changeApplication" value="Change Request" action="#{applicationMB.changeApplication}" ajax="false"/></td>
                        </c:if>    
                        </tr>
                             </table>
