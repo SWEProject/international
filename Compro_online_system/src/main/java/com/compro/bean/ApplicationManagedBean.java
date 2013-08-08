@@ -111,6 +111,66 @@ public class ApplicationManagedBean implements Serializable {
         return ERROR;
     }
 
+    public String submitApplication()
+    {
+        try {
+            applicationTemplate = applicationService.getApplicationTemplate();
+            
+            
+            String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
+            setUserId(userId);
+            
+            System.out.println("User ID:"+userId); 
+            ApplicationForm appForm = applicationService.getUserApplication(userId);
+            
+            //There is no existing form and need to create a new one
+            if(appForm == null)
+            {
+                appForm = new ApplicationForm("submitted", "undetermined", Integer.parseInt(userId));
+                
+                for(int i=0;i<applicationTemplate.getSections().size();i++)
+                {
+                    Section sec = (Section)applicationTemplate.getSections().get(i);
+                    for(int j=0;j<sec.getFields().size();j++)
+                    {
+                        Field f = (Field)sec.getFields().get(j);
+                        String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(f.getId());
+                        System.out.println(f.getName()+" ----- "+fValue);
+                        FieldForm fieldForm = new FieldForm(fValue,appForm ,f);
+                    }
+                }
+                
+                applicationService.insertApplicationForm(appForm);
+            }
+            else
+            {
+                appForm.setFieldsForm(new ArrayList());
+                appForm.setStatus("submitted");
+                for(int i=0;i<applicationTemplate.getSections().size();i++)
+                {
+                    Section sec = (Section)applicationTemplate.getSections().get(i);
+                    for(int j=0;j<sec.getFields().size();j++)
+                    {
+                        Field f = (Field)sec.getFields().get(j);
+                        String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(f.getId());
+                        System.out.println(f.getName()+" ----- "+fValue);
+                        FieldForm fieldForm = new FieldForm(fValue,appForm ,f);
+                    }
+                }
+                
+                applicationService.updateApplicationForm(appForm);
+            }
+            
+            
+                 
+            
+            return HOME;
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+    
     public IApplicationService getApplicationService() {
         return applicationService;
     }
