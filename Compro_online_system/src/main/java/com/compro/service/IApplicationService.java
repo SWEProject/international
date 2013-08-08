@@ -30,4 +30,6 @@ public interface IApplicationService {
     public boolean insertApplicationFieldForm(FieldForm fieldForm);
        
     public boolean updateApplicationFieldForm(FieldForm fieldForm);
+    
+    public boolean insertChange(String applicationId,String fieldId,String value);
 }
