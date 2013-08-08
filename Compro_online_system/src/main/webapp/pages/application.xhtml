@@ -49,7 +49,12 @@
                                     
                         
                         </c:forEach>
-                       <tr><td> <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/></td></tr>
+                       <tr>
+                        <c:if test="#{applicationMB.applicationForm.status =='active' || applicationMB.applicationForm.status ==null}">
+                       <td> <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/></td>
+                       <td> <p:commandButton id="submitApplication" value="Submit" action="#{applicationMB.submitApplication}" ajax="false"/></td>
+                       </c:if>
+                       </tr>
                             </table>
                         </h:form>
                     </ui:insert>
