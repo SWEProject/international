@@ -195,7 +195,7 @@ public class ApplicationManagedBean implements Serializable {
                     if(!appForm.getFieldsValues().get(f.getId()).equals(fValue))
                     {
                         //need to insert new change and if there is a previous change change it to inactive
-                        
+                        applicationService.insertChange(appForm.getId()+"", f.getId()+"" , fValue);
                     }
                 }
             }
