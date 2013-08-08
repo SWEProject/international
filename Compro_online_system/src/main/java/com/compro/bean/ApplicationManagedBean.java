@@ -33,13 +33,14 @@ public class ApplicationManagedBean implements Serializable {
     @ManagedProperty(value = "#{ApplicationService}")
     IApplicationService applicationService;
     Application applicationTemplate;
+    ApplicationForm applicationForm;
     //@ManagedProperty("#{param.id}")
     private int id;
 
     public String retrieveApplicationTemplate() {
         try {
             applicationTemplate = applicationService.getApplicationTemplate();
-            
+            applicationForm = applicationService.getUserApplication(id+"");
             return APPLICATION;
         } catch (DataAccessException e) {
             e.printStackTrace();
@@ -114,6 +115,14 @@ public class ApplicationManagedBean implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ApplicationForm getApplicationForm() {
+        return applicationForm;
+    }
+
+    public void setApplicationForm(ApplicationForm applicationForm) {
+        this.applicationForm = applicationForm;
     }
 
 
