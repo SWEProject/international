@@ -35,10 +35,12 @@ public class ApplicationManagedBean implements Serializable {
     Application applicationTemplate;
     ApplicationForm applicationForm;
 
+    private String userId;
+    
     public String retrieveApplicationTemplate() {
         try {
             String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
-            
+            setUserId(userId);
             applicationTemplate = applicationService.getApplicationTemplate();
             applicationForm = applicationService.getUserApplication(userId);
             return APPLICATION;
@@ -56,6 +58,8 @@ public class ApplicationManagedBean implements Serializable {
             
             
             String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
+            setUserId(userId);
+            
             System.out.println("User ID:"+userId); 
             ApplicationForm appForm = applicationService.getUserApplication(userId);
             
@@ -115,6 +119,14 @@ public class ApplicationManagedBean implements Serializable {
 
     public void setApplicationForm(ApplicationForm applicationForm) {
         this.applicationForm = applicationForm;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 
