@@ -27,7 +27,7 @@
                 <td id="content">
                     <ui:insert name="content">
                         <h:form>
-                            <h:inputHidden value="#{userMB.id}" id="id" />
+                           <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
                             <p:commandButton id="retrieveApplicationTemplate" value="Retrieve Application" action="#{applicationMB.retrieveApplicationTemplate}" ajax="false"/>
                         </h:form>
                     </ui:insert>
