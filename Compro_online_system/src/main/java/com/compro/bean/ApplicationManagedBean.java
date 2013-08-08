@@ -172,17 +172,17 @@ public class ApplicationManagedBean implements Serializable {
     }
     
     
-        public String changeApplication()
+    public String reqChangeApplication()
     {
         try {
-            applicationTemplate = applicationService.getApplicationTemplate();
+            //applicationTemplate = applicationService.getApplicationTemplate();
             
             
-            String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
-            setUserId(userId);
+            //String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
+            //setUserId(userId);
             
-            System.out.println("User ID:"+userId); 
-            ApplicationForm appForm = applicationService.getUserApplication(userId);
+            //System.out.println("User ID:"+userId); 
+           // ApplicationForm appForm = applicationService.getUserApplication(userId);
             
             /*for(int i=0;i<applicationTemplate.getSections().size();i++)
             {
