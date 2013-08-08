@@ -52,7 +52,7 @@ public class RegistrationDAO
         con = ConnectionManager.dcConnect();
         con.setAutoCommit(false);
         PreparedStatement preparedStatement = null;
-        String SQL = "Insert into compro.user (fName, lName, mNAme, email, pasword) "
+        String SQL = "Insert into user (fName, lName, mNAme, email, pasword) "
                     + " VALUES (?,?,?,?,?)";
                     
         preparedStatement = con.prepareStatement(SQL);
