@@ -429,7 +429,7 @@ public class ApplicationDAO {
                     insertApplicationFieldForm(fieldForm);
                 }
             }
-            {
+            else {
                 insertApplicationFieldForm(fieldForm);
             }
             
