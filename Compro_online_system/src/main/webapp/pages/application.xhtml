@@ -41,7 +41,7 @@
                                      <td>#{field.name}</td>
                                     <td>
                                      <c:if test="#{field.type=='string'}">
-                                         <input type="text" name="#{field.id}" id="#{field.id}"  value="" label="#{field.name}" ></input>
+                                         <input type="text" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
                                      </c:if>
                                     </td>
                                 </tr>
