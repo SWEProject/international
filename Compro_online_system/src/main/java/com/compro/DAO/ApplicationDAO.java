@@ -563,7 +563,7 @@ public class ApplicationDAO {
                     statement2.executeUpdate(SQL2);
                     
                     String SQL3 = "insert into field_form_change(field_form_id,value,status,change_date) "+
-                            " values("+fieldFormId+",'"+value+"','active',now()') ";
+                            " values("+fieldFormId+",'"+value+"','active',now()) ";
                     System.out.println(SQL3);
 
                     Statement statement3 = con.createStatement();
