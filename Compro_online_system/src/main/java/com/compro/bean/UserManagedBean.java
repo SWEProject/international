@@ -74,6 +74,7 @@ public class UserManagedBean implements Serializable {
                         user.setEmail(getEmail());
 			User u = getUserService().loginUser(user);
                          setId(u.getId());
+                        
 			if(u == null)
                             return ERROR;
                         else    
