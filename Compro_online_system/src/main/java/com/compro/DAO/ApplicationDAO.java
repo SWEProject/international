@@ -533,4 +533,60 @@ public class ApplicationDAO {
         }
         return result;
        }
+       
+       
+       static boolean insertChange(String applicationId,String fieldId,String value) {
+        boolean saved = false;
+
+        try {
+
+
+            ConnectionManager connectionMan = new ConnectionManager();
+            con = ConnectionManager.dcConnect();
+            con.setAutoCommit(false);
+
+            Statement statement = null;
+            
+            String SQL1 = "select * from field_form where field_id = "+fieldId+" and application_form_id = "+applicationId;
+            System.out.println(SQL1);        
+
+            statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(SQL1);
+            if (rs != null) {
+                if (rs.next()) {
+                    String fieldFormId = rs.getString("id");
+                    
+                    String SQL2 = "update field_form_change set status = 'inactive' where field_form_id ="+fieldFormId;
+                    System.out.println(SQL2);
+                    
+                    Statement statement2 = con.createStatement();
+                    statement2.executeUpdate(SQL2);
+                    
+                    String SQL3 = "insert into field_form_change(field_form_id,value,status,change_date) "+
+                            " values("+fieldFormId+",'"+value+"','active',now()') ";
+                    System.out.println(SQL3);
+
+                    Statement statement3 = con.createStatement();
+                    statement3.executeUpdate(SQL3);
+                }
+            }
+            
+            con.commit();
+            saved = true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+
+        return saved;
+    }
 }
