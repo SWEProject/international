@@ -50,6 +50,7 @@ class LoginDAO {
                // retrieving the data from result set
                 while (rs.next())
                 {
+                    user.setId(rs.getInt("id"));
                     user.setName(rs.getString("fName"));
                     user.setSurname(rs.getString("lName"));
                     user.setMiddlename(rs.getString("mName"));
