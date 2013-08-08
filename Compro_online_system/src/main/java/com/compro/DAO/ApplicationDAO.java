@@ -218,12 +218,12 @@ public class ApplicationDAO {
                             + "where id = " + fieldId;
 
 
-                    statement = con.createStatement();
+                   // statement = con.createStatement();
                     ResultSet rs2 = statement.executeQuery(SQL2);
                     if (rs2 != null) {
                         if (rs2.next()) {
-                            field = new Field(rs.getInt("id"), rs.getString("name"), rs.getString("type"),
-                                    rs.getInt("order"), rs.getString("status"), null);
+                            field = new Field(rs2.getInt("id"), rs2.getString("name"), rs2.getString("type"),
+                                    rs2.getInt("order"), rs2.getString("status"), null);
                         }
                     }
 
