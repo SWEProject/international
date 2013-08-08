@@ -12,6 +12,7 @@ import com.compro.model.Section;
 import com.compro.model.User;
 import com.compro.service.IApplicationService;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -84,7 +85,20 @@ public class ApplicationManagedBean implements Serializable {
             }
             else
             {
-
+                appForm.setFieldsForm(new ArrayList());
+                for(int i=0;i<applicationTemplate.getSections().size();i++)
+                {
+                    Section sec = (Section)applicationTemplate.getSections().get(i);
+                    for(int j=0;j<sec.getFields().size();j++)
+                    {
+                        Field f = (Field)sec.getFields().get(j);
+                        String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(f.getId());
+                        System.out.println(f.getName()+" ----- "+fValue);
+                        FieldForm fieldForm = new FieldForm(fValue,appForm ,f);
+                    }
+                }
+                
+                applicationService.updateApplicationForm(appForm);
             }
             
             
