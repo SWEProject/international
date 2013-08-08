@@ -172,7 +172,7 @@ public class ApplicationManagedBean implements Serializable {
     }
     
     
-        public String requestChangeApplication()
+        public String changeApplication()
     {
         try {
             applicationTemplate = applicationService.getApplicationTemplate();
@@ -184,7 +184,7 @@ public class ApplicationManagedBean implements Serializable {
             System.out.println("User ID:"+userId); 
             ApplicationForm appForm = applicationService.getUserApplication(userId);
             
-            for(int i=0;i<applicationTemplate.getSections().size();i++)
+            /*for(int i=0;i<applicationTemplate.getSections().size();i++)
             {
                 Section sec = (Section)applicationTemplate.getSections().get(i);
                 for(int j=0;j<sec.getFields().size();j++)
@@ -198,7 +198,7 @@ public class ApplicationManagedBean implements Serializable {
                         applicationService.insertChange(appForm.getId()+"", f.getId()+"" , fValue);
                     }
                 }
-            }
+            }*/
             
             return HOME;
         } catch (DataAccessException e) {
