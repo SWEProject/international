@@ -212,27 +212,29 @@ public class ApplicationDAO {
             ResultSet rs = statement.executeQuery(SQL);
             if (rs != null) {
                 while (rs.next()) {
-                    String fieldId = rs.getString("field_id");
-                    Field field = null;
+                    /*Field field = null;
                     String SQL2 = "select * from field "
                             + "where id = " + fieldId;
-
+                    System.out.println(SQL2);
 
                    // statement = con.createStatement();
                     ResultSet rs2 = statement.executeQuery(SQL2);
                     if (rs2 != null) {
                         if (rs2.next()) {
+                            System.out.println("xxxx");
                             field = new Field(rs2.getInt("id"), rs2.getString("name"), rs2.getString("type"),
-                                    rs2.getInt("order"), rs2.getString("status"), null);
+                                    rs2.getInt("order"), rs2.getString("status"), new Section());
+                            System.out.println("yyyy");
                         }
                     }
-
-                    FieldForm fieldForm = new FieldForm(rs.getInt("id"), rs.getString("value"), applicationForm, field);
-                    applicationForm.getFieldsValues().put(fieldId, rs.getString("value"));
+*/
+                    //FieldForm fieldForm = new FieldForm(rs.getInt("id"), rs.getString("value"), applicationForm, null);
+                    applicationForm.getFieldsValues().put(new Integer(rs.getInt("field_id")), rs.getString("value"));
+                    System.out.println("yyyy");
                 }
             }
 
-
+            System.out.println("xxx"+applicationForm.getFieldsValues().size());
             con.commit();
 
         } catch (Exception e) {
