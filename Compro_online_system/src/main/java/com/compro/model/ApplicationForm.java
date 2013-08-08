@@ -20,7 +20,7 @@ public class ApplicationForm {
     private Date lastModifiedDate;
     private int userId;
     private List<FieldForm> fieldsForm  = new ArrayList();
-    private HashMap<String,String> fieldsValues = new HashMap();
+    private HashMap<Integer,String> fieldsValues = new HashMap();
     
     public ApplicationForm() {
     }
@@ -105,11 +105,11 @@ public class ApplicationForm {
         this.id = id;
     }
 
-    public HashMap<String, String> getFieldsValues() {
+    public HashMap<Integer, String> getFieldsValues() {
         return fieldsValues;
     }
 
-    public void setFieldsValues(HashMap<String, String> fieldsValues) {
+    public void setFieldsValues(HashMap<Integer, String> fieldsValues) {
         this.fieldsValues = fieldsValues;
     }
     
