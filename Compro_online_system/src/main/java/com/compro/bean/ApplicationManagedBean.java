@@ -171,6 +171,27 @@ public class ApplicationManagedBean implements Serializable {
         return ERROR;
     }
     
+    
+        public String requestChangeApplication()
+    {
+        try {
+            applicationTemplate = applicationService.getApplicationTemplate();
+            
+            
+            String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
+            setUserId(userId);
+            
+            System.out.println("User ID:"+userId); 
+            ApplicationForm appForm = applicationService.getUserApplication(userId);
+            
+            
+            return HOME;
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+    
     public IApplicationService getApplicationService() {
         return applicationService;
     }
