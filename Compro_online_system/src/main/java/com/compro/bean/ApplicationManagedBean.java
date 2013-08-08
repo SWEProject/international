@@ -184,6 +184,21 @@ public class ApplicationManagedBean implements Serializable {
             System.out.println("User ID:"+userId); 
             ApplicationForm appForm = applicationService.getUserApplication(userId);
             
+            for(int i=0;i<applicationTemplate.getSections().size();i++)
+            {
+                Section sec = (Section)applicationTemplate.getSections().get(i);
+                for(int j=0;j<sec.getFields().size();j++)
+                {
+                    Field f = (Field)sec.getFields().get(j);
+                    String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(f.getId());
+                    System.out.println(f.getName()+" ----- "+fValue);
+                    if(!appForm.getFieldsValues().get(f.getId()).equals(fValue))
+                    {
+                        //need to insert new change and if there is a previous change change it to inactive
+                        
+                    }
+                }
+            }
             
             return HOME;
         } catch (DataAccessException e) {
