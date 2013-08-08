@@ -38,7 +38,7 @@ class LoginDAO {
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = "Select * from compro.user "
+            String SQL = "Select * from user "
                     + "where email = '"+ email +"'"
                     + " And pasword = '" + passWord +"'"; 
             statement = con.createStatement();
@@ -99,7 +99,7 @@ class LoginDAO {
             con.setAutoCommit(false);
 
             Statement stmt = null;
-            String SQL = "Select email from compro.user "
+            String SQL = "Select email from user "
                     + "where email = " + "'" + email + "'";
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
@@ -154,7 +154,7 @@ class LoginDAO {
             con.setAutoCommit(false);
 
             Statement stmt = null;
-            String SQL = "Select pasword from compro.user  "
+            String SQL = "Select pasword from user  "
                     + "where pasword = " + "'" + password + "'";
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
