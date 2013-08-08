@@ -28,7 +28,7 @@
                 <td id="content">
                     <ui:insert name="content">
                         <h:form>    
-                            <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
+                            <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
                             <table>
                                 
                                 <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
