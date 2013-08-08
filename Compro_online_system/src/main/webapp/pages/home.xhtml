@@ -15,19 +15,13 @@
     </h:head>
 
     <h:body>
-        <table cellspacing="10px">
-            <tr>
-                <td id="top" colspan="2">
-                    <ui:insert name="top"><h3>Compro online application</h3></ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="left">
-                    <ui:insert name="left"></ui:insert>
-                </td>
-                <td id="content">
-                    <ui:insert name="content">
-                        <h:form>
+        <ui:composition template="commonLayout.xhtml">
+
+            <ui:define name="left">
+                 <div id="wrapper">
+                     
+                      <h:form>
+                          <div style="margin-top: 10px;">
                             <c:if test="#{userMB.id!=null}">
                                 <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
                             </c:if> 
@@ -36,16 +30,21 @@
                             </c:if> 
                             
                            <p:commandButton id="retrieveApplicationTemplate" value="Retrieve Application" action="#{applicationMB.retrieveApplicationTemplate}" ajax="false"/>
-                        </h:form>
-                    </ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="bottom" colspan="2">
-                    <ui:insert name="bottom"></ui:insert>
-                </td>
-            </tr>
-        </table>
+                          </div>  
+                      </h:form>
+                                                   
+                 <h:form>  
+                     <div style="margin-top: 50px;">
+                   
+                    <h:inputHidden value="#{userMB.id}" id="id" />
+                    <h:commandLink value="account" action="#{userMB.loginUser()}"/>                    
+                   
+                         </div>
+                 </h:form>
+                 </div>
+            </ui:define>
+        </ui:composition> 
+
     </h:body>
 
 </html>
