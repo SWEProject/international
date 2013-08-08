@@ -410,13 +410,29 @@ public class ApplicationDAO {
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = "update field_form set value = '"+fieldForm.getValue()+"' "
-                    + " where id = "+fieldForm.getId();
-
-            System.out.println(SQL);
+            
+            String SQL1 = "select * from field_form where field_id = "+fieldForm.getField().getId()+" and application_form_id = "+fieldForm.getApplicationForm().getId();
+            System.out.println(SQL1);        
 
             statement = con.createStatement();
-            statement.executeUpdate(SQL);
+            ResultSet rs = statement.executeQuery(SQL1);
+            if (rs != null) {
+                if (rs.next()) {
+                    String SQL = "update field_form set value = '"+fieldForm.getValue()+"' "
+                    + " where field_id = "+fieldForm.getField().getId()+" and application_form_id = "+fieldForm.getApplicationForm().getId();
+                    System.out.println(SQL);
+
+                    Statement statement2 = con.createStatement();
+                    statement2.executeUpdate(SQL);
+                }else
+                {
+                    insertApplicationFieldForm(fieldForm);
+                }
+            }
+            {
+                insertApplicationFieldForm(fieldForm);
+            }
+            
             con.commit();
             saved = true;
 
