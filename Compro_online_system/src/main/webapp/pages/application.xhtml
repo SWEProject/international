@@ -9,78 +9,88 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      
+
         <title>Welcome to Compro online application</title>
     </h:head>
 
     <h:body>
         <h:outputStylesheet library="css" name="demo.css"  />
-     <h:outputStylesheet library="css" name="style.css" />
-     <h:outputStylesheet library="css" name="animate-custom.css"/>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="animate-custom.css"/>
         <ui:composition template="commonLayout.xhtml">
 
-            
+
             <ui:define name="content">
-             <div class="container">
-                
-             <section>
-               <div id="container_demo" >
-                  <div id="wrapper">
-                   <div id="application" class="animate form">
-                     <h:form>  
-                         <h1>Application Form</h1>
-                            <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
-${applicationMB.applicationTemplate.sections.size()}
-                                <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
-                              <c:if test="#{section.id=='1'}">
-                                    <div id="">                                  
-                                    <a class="hiddenanchor" id="#{section.id}"></a>
-                                    <label style="font-size: 20px; text-decoration-line: underline">${section.name}</label>
-                           
-                                    <c:forEach var="field" items="${section.fields}">
-                                        <p>
-                                        <label> #{field.name}</label>
-                                    
-                                     <c:if test="#{field.type=='string'}">
-                                         <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
-                                     </c:if>
-                                        </p>
-                                    </c:forEach>                                 
-                        <a href="##{section.id}" class="to_register">Next</a>
+                <div class="container">
+
+                    <section>
+                        <div id="container_demo" >
+                            <div id="wrapper">
+                                <div id="application" class="animate form">
+                                    <h:form>  
+                                        <h1>Application Form</h1>
+                                        <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
+                                        ${applicationMB.applicationTemplate.sections.size()}
+                                        <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
+                                            <c:if test="#{section.id=='1'}">
+                                                <div id="">                                  
+                                                    <a class="hiddenanchor" id="#{section.id}"></a>
+                                                    <label style="font-size: 20px; text-decoration-line: underline">${section.name}</label>
+
+                                                    <c:forEach var="field" items="${section.fields}">
+                                                        <p>
+                                                            <label> #{field.name}</label>
+
+                                                            <c:if test="#{field.type=='string'}">
+                                                                <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
+                                                            </c:if>
+                                                        </p>
+                                                    </c:forEach>                                 
+                                                    <a href="##{section.id}" class="to_register">Next</a>
+                                                </div>
+                                            </c:if>
+                                            <c:otherwise>
+                                                <div style="display: none;">                                  
+                                                    <a class="hiddenanchor" id="#{section.id}"></a>
+                                                    <label>${section.name}</label>
+
+                                                    <c:forEach var="field" items="${section.fields}">
+                                                        <p>
+                                                            <label> #{field.name}</label>
+
+                                                            <c:if test="#{field.type=='string'}">
+                                                                <input type="text" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
+                                                            </c:if>
+                                                        </p>
+                                                    </c:forEach>                                 
+                                                    <a href="#toregister" class="to_register">Next</a>
+                                                </div>
+
+                                            </c:otherwise>
+                                        </c:forEach>
+                                        <c:if test="#{applicationMB.applicationForm.status =='active' || applicationMB.applicationForm.status ==null}">
+                                            <p class="login button">
+                                                <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/>
+                                            </p>
+                                            <p class="login button">
+                                                <p:commandButton id="submitApplication" value="Submit" action="#{applicationMB.submitApplication}" ajax="false"/>
+                                            </p>
+                                        </c:if> 
+                                        <c:otherwise test="#{applicationMB.applicationForm.status =='submitted'}">
+                                            <p class="login button">
+                                                <p:commandButton id="changeApplication" value="Change Request" action="#{applicationMB.changeApplication}" ajax="false"/>
+                                            </p>                                         
+                                        </c:otherwise>
+                                    </h:form>
+                                </div>
+                            </div>
                         </div>
-                         </c:if>
-                                    <c:otherwise>
-                                        <div style="display: none;">                                  
-                                    <a class="hiddenanchor" id="#{section.id}"></a>
-                                    <label>${section.name}</label>
-                           
-                                    <c:forEach var="field" items="${section.fields}">
-                                        <p>
-                                        <label> #{field.name}</label>
-                                    
-                                     <c:if test="#{field.type=='string'}">
-                                         <input type="text" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
-                                     </c:if>
-                                        </p>
-                                    </c:forEach>                                 
-                        <a href="#toregister" class="to_register">Next</a>
-                        </div>
-                                        
-                                    </c:otherwise>
-                        </c:forEach>
-                            <p class="login button">
-                        <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/>
-                            </p>
-                     </h:form>
-                      </div>
-                  </div>
-                </div>
-                </section> 
+                    </section> 
                 </div>
             </ui:define>
         </ui:composition> 
-        
-        
+
+
     </h:body>
 
 </html>
