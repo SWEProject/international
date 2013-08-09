@@ -72,4 +72,9 @@ public class DAOFacade {
     {
         return ApplicationDAO.insertChange(applicationId, fieldId, value);
     }
+    
+    public String checkRules(ApplicationForm applicationForm)
+    {
+        return ApplicationDAO.checkRules( applicationForm);
+    }
 }
