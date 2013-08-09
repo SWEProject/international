@@ -541,7 +541,7 @@ public class ApplicationDAO {
         try {
 
 
-            ConnectionManager connectionMan = new ConnectionManager();
+            //ConnectionManager connectionMan = new ConnectionManager();
             con = ConnectionManager.dcConnect();
             con.setAutoCommit(false);
 
@@ -568,6 +568,70 @@ public class ApplicationDAO {
 
                     Statement statement3 = con.createStatement();
                     statement3.executeUpdate(SQL3);
+                }
+                else
+                {
+                    Statement statement4 = null;
+                    String SQL4 = "insert into field_form (application_form_id,field_id,value) "
+                            + " values("+applicationId+","+fieldId+",'') ";
+
+                    System.out.println(SQL4);
+
+                    statement4 = con.createStatement();
+                    statement4.executeUpdate(SQL4);
+                    con.commit();
+                    
+                    Statement statement5 = null;
+            
+                    String SQL5 = "select * from field_form where field_id = "+fieldId+" and application_form_id = "+applicationId;
+                    System.out.println(SQL5);        
+
+                    statement5 = con.createStatement();
+                    ResultSet rs5 = statement5.executeQuery(SQL5);
+                    if (rs5 != null) {
+                        if (rs5.next()) {
+                            String fieldFormId = rs5.getString("id");
+                    
+                            String SQL3 = "insert into field_form_change(field_form_id,value,status,change_date) "+
+                                    " values("+fieldFormId+",'"+value+"','active',now()) ";
+                            System.out.println(SQL3);
+
+                            Statement statement3 = con.createStatement();
+                            statement3.executeUpdate(SQL3);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Statement statement4 = null;
+                String SQL4 = "insert into field_form (application_form_id,field_id,value) "
+                        + " values("+applicationId+","+fieldId+",'') ";
+
+                System.out.println(SQL4);
+
+                statement4 = con.createStatement();
+                statement4.executeUpdate(SQL4);
+                con.commit();
+
+                Statement statement5 = null;
+
+                String SQL5 = "select * from field_form where field_id = "+fieldId+" and application_form_id = "+applicationId;
+                System.out.println(SQL5);        
+
+                statement5 = con.createStatement();
+                ResultSet rs5 = statement5.executeQuery(SQL5);
+                if (rs5 != null) {
+                    if (rs5.next()) {
+                        String fieldFormId = rs5.getString("id");
+
+                        String SQL3 = "insert into field_form_change(field_form_id,value,status,change_date) "+
+                                " values("+fieldFormId+",'"+value+"','active',now()) ";
+                        System.out.println(SQL3);
+
+                        Statement statement3 = con.createStatement();
+                        statement3.executeUpdate(SQL3);
+                    }
                 }
             }
             
