@@ -29,11 +29,11 @@
                     <ui:insert name="content">
                         <h:form>
                             <c:if test="#{userMB.id!=0}">
-                                <input type="text" name="userId" id="userId" value="#{userMB.id}"></input>
+                                <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
                             </c:if> 
-                            <c:if test="#{applicationMB.userId!=0}">
-                                <input type="text" name="userId" id="userId" value="#{applicationMB.userId}"></input>
-                            </c:if> 
+                            <c:otherwise test="#{applicationMB.userId!=0}">
+                                <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
+                            </c:otherwise> 
                             
                            <p:commandButton id="retrieveApplicationTemplate" value="Retrieve Application" action="#{applicationMB.retrieveApplicationTemplate}" ajax="false"/>
                         </h:form>
