@@ -15,37 +15,11 @@
     </h:head>
 
     <h:body>
-        <table cellspacing="10px">
-            <tr>
-                <td id="top" colspan="2">
-                    <ui:insert name="top"><h3>Compro online application</h3></ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="left">
-                    <ui:insert name="left"></ui:insert>
-                </td>
-                <td id="content">
-                    <ui:insert name="content">
-                        <h:form>
-                            <c:if test="#{userMB.id!=0}">
-                                <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
-                            </c:if> 
-                            <c:otherwise test="#{applicationMB.userId!=0}">
-                                <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
-                            </c:otherwise> 
-                            
-                           <p:commandButton id="retrieveApplicationTemplate" value="Retrieve Application" action="#{applicationMB.retrieveApplicationTemplate}" ajax="false"/>
-                        </h:form>
-                    </ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="bottom" colspan="2">
-                    <ui:insert name="bottom"></ui:insert>
-                </td>
-            </tr>
-        </table>
+        <ui:composition template="commonLayout.xhtml">
+
+            
+        </ui:composition> 
+
     </h:body>
 
 </html>
