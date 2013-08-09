@@ -483,49 +483,96 @@ public class ApplicationDAO {
             ResultSet rs2;
              if (rs1 != null) {
                  int field_id;
-                 int limit;
+                 int limitInt;
+                 String limitString;
                  String disposition;
                  String operator;
-                    while (rs1.next()) {
+                 while (rs1.next()) {
                     field_id = rs1.getInt("field_id");
-                    limit = rs1.getInt("value");
-                    disposition = rs1.getString("disposition");
                     operator = rs1.getString("operator");
-                    int value;
-
-                            //value = rs2.getInt("value");
-                            value = Integer.parseInt(applicationForm.getFieldsValues().get(field_id));
-                            System.out.println("Ehsan ----- "+value);
-                            
+                    disposition = rs1.getString("disposition");
+                   
+                    if(operator.startsWith("se"))    // compare String 
+                    {
+                        
+                        limitString = rs1.getString("value");
+                        String value = applicationForm.getFieldsValues().get(field_id);
+                        System.out.println("Ehsan ----- String ====  "+value+" "+operator +" "+rs1.getString("value"));
+                        if(operator.equalsIgnoreCase("se") && value.equalsIgnoreCase(limitString))
+                        {
+                            result = disposition;
+                            break;
+                        }
+                        else if(operator.equalsIgnoreCase("se!") && !value.equalsIgnoreCase(limitString))
+                        {
+                            result = disposition;
+                            break;
+                        }
+                    }
+                    else                                    //compare integer
+                    {
+                        int value = Integer.parseInt(applicationForm.getFieldsValues().get(field_id));
+                        
+                        System.out.println("Ehsan ----- Int ==== "+value +" "+operator +" "+rs1.getString("value"));
+                        
+                        if(operator.equalsIgnoreCase("bt"))
+                        {
+                            limitString = rs1.getString("value");
+                            String[] values = limitString.split("_");
+                            if(values.length==2 && Integer.valueOf(values[0])<value && Integer.valueOf(values[1])>value)
+                            {
+                                result = disposition;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            limitInt = rs1.getInt("value");
                             if(operator.equalsIgnoreCase("g"))
                             {
-                                if(value>limit)
+                                if(value>limitInt)
                                 {
                                     result = disposition;
                                     break;
                                 }
                             }
                             else if(operator.equalsIgnoreCase("ge")) {
-                                if(value>=limit)
+                                if(value>=limitInt)
                                 {
                                     result = disposition;
                                     break;
                                 }
                             }
                             else if(operator.equalsIgnoreCase("le")) {
-                                if(value<=limit)
+                                if(value<=limitInt)
                                 {
                                     result = disposition;
                                     break;
                                 }
                             }
                             else if(operator.equalsIgnoreCase("l")) {
-                                if(value<limit)
+                                if(value<limitInt)
                                 {
                                     result = disposition;
                                     break;
                                 }
                             }
+                            else if(operator.equalsIgnoreCase("e")) {
+                                if(value==limitInt)
+                                {
+                                    result = disposition;
+                                    break;
+                                }
+                            }
+                            else if(operator.equalsIgnoreCase("e!")) {
+                                if(value!=limitInt)
+                                {
+                                    result = disposition;
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
             }
             con.commit();
