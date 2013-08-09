@@ -17,32 +17,7 @@
     <h:body>
         <ui:composition template="commonLayout.xhtml">
 
-            <ui:define name="left">
-                 <div id="wrapper">
-                     
-                      <h:form>
-                          <div style="margin-top: 10px;">
-                            <c:if test="#{userMB.id!=null}">
-                                <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
-                            </c:if> 
-                            <c:if test="#{applicationMB.userId!=null}">
-                                <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
-                            </c:if> 
-                            
-                           <p:commandButton id="retrieveApplicationTemplate" value="Retrieve Application" action="#{applicationMB.retrieveApplicationTemplate}" ajax="false"/>
-                          </div>  
-                      </h:form>
-                                                   
-                 <h:form>  
-                     <div style="margin-top: 50px;">
-                   
-                    <h:inputHidden value="#{userMB.id}" id="id" />
-                    <h:commandLink value="account" action="#{userMB.loginUser()}"/>                    
-                   
-                         </div>
-                 </h:form>
-                 </div>
-            </ui:define>
+            
         </ui:composition> 
 
     </h:body>
