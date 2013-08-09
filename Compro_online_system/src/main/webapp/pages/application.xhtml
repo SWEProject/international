@@ -31,8 +31,8 @@
                                 <div id="application" class="animate form">
                                     <h:form>  
                                         <h1>Application Form</h1>
-                                        <input type="text" name="userId" id="userId" value="#{applicationMB.userId}"></input>
-                                        <input type="text" name="auserId" id="auserId" value="#{applicationMB.userId}"></input>
+                                        <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
+                                        <input type="hidden" name="auserId" id="auserId" value="#{applicationMB.userId}"></input>
                                         ${applicationMB.applicationTemplate.sections.size()}
                                         <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
                                             <c:if test="#{section.id=='1'}">
@@ -48,31 +48,31 @@
                                                                 <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
                                                             </c:if>
                                                             <c:if test="#{field.type=='date'}">
-                                                            <script type="text/javascript">
-                                                              window.onload = function() {
-                                                                Calendar.setup({
-                                                                  dateField      : '#{field.id}',
-                                                                  triggerElement : 'calendarButton'
-                                                                })
-                                                              }
-                                                            </script>
-                                                        <input type="text" name="#{field.id}" id="#{field.id}" value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" readonly="readonly"/>
-                                                        <input type="button" id="calendarButton" value="Show Calendar" />
-                                                         </c:if>
-                                     <c:if test="#{field.type=='list'}">
-                                         <select name="#{field.id}" id="#{field.id}" value="c2">  
-                                             <option value=""></option>
-                                             
-                                             <c:forEach var="choices" items="${field.choices}">
-                                                 <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)==choices}">
-                                                    <option value="#{choices}" selected="selected">#{choices}</option>
-                                                 </c:if>
-                                                 <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)!=choices}">
-                                                 <option value="#{choices}" >#{choices}</option>  
-                                                 </c:if>
-                                             </c:forEach>
-                                         </select> 
-                                     </c:if>
+                                                                <script type="text/javascript">
+                                                                    window.onload = function() {
+                                                                        Calendar.setup({
+                                                                            dateField: '#{field.id}',
+                                                                            triggerElement: 'calendarButton'
+                                                                        })
+                                                                    }
+                                                                </script>
+                                                                <input type="text" name="#{field.id}" id="#{field.id}" value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" readonly="readonly"/>
+                                                                <input type="button" id="calendarButton" value="Show Calendar" />
+                                                            </c:if>
+                                                            <c:if test="#{field.type=='list'}">
+                                                                <select name="#{field.id}" id="#{field.id}" value="c2">  
+                                                                    <option value=""></option>
+
+                                                                    <c:forEach var="choices" items="${field.choices}">
+                                                                        <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)==choices}">
+                                                                            <option value="#{choices}" selected="selected">#{choices}</option>
+                                                                        </c:if>
+                                                                        <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)!=choices}">
+                                                                            <option value="#{choices}" >#{choices}</option>  
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select> 
+                                                            </c:if>
                                                         </p>
                                                     </c:forEach>                                 
                                                     <a href="##{section.id}" class="to_register">Next</a>
@@ -92,30 +92,30 @@
                                                             </c:if>
                                                             <c:if test="#{field.type=='date'}">
                                                                 <script type="text/javascript">
-                                                                  window.onload = function() {
-                                                                    Calendar.setup({
-                                                                      dateField      : '#{field.id}',
-                                                                      triggerElement : 'calendarButton'
-                                                                    })
-                                                                  }
+                                                                    window.onload = function() {
+                                                                        Calendar.setup({
+                                                                            dateField: '#{field.id}',
+                                                                            triggerElement: 'calendarButton'
+                                                                        })
+                                                                    }
                                                                 </script>
-                                                                  <input type="text" name="#{field.id}" id="#{field.id}" value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" readonly="readonly"/>
-                                                                  <input type="button" id="calendarButton" value="Show Calendar" />
-                                                                   </c:if>
-                                                                   <c:if test="#{field.type=='list'}">
-                                                                       <select name="#{field.id}" id="#{field.id}" value="c2">  
-                                                                           <option value=""></option>
+                                                                <input type="text" name="#{field.id}" id="#{field.id}" value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" readonly="readonly"/>
+                                                                <input type="button" id="calendarButton" value="Show Calendar" />
+                                                            </c:if>
+                                                            <c:if test="#{field.type=='list'}">
+                                                                <select name="#{field.id}" id="#{field.id}" value="c2">  
+                                                                    <option value=""></option>
 
-                                                                           <c:forEach var="choices" items="${field.choices}">
-                                                                               <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)==choices}">
-                                                                                  <option value="#{choices}" selected="selected">#{choices}</option>
-                                                                               </c:if>
-                                                                               <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)!=choices}">
-                                                                               <option value="#{choices}" >#{choices}</option>  
-                                                                               </c:if>
-                                                                           </c:forEach>
-                                                                       </select> 
-                                                                   </c:if>
+                                                                    <c:forEach var="choices" items="${field.choices}">
+                                                                        <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)==choices}">
+                                                                            <option value="#{choices}" selected="selected">#{choices}</option>
+                                                                        </c:if>
+                                                                        <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)!=choices}">
+                                                                            <option value="#{choices}" >#{choices}</option>  
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select> 
+                                                            </c:if>
                                                         </p>
                                                     </c:forEach>                                 
                                                     <a href="#toregister" class="to_register">Next</a>
