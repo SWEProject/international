@@ -16,7 +16,15 @@
 
     <h:body>
         <ui:composition template="commonLayout.xhtml">
-
+                    <h:form>
+                            <c:if test="#{userMB.id!=0}">
+                                <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
+                            </c:if> 
+                            <c:otherwise test="#{applicationMB.userId!=0}">
+                                <input type="hidden" name="auserId" id="auserId" value="#{applicationMB.userId}"></input>
+                            </c:otherwise> 
+                            
+                             </h:form>
             
         </ui:composition> 
 

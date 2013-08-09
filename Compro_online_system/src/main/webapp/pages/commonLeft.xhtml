@@ -23,7 +23,7 @@ and open the template in the editor.
                                 <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
                             </c:if> 
                             <c:if test="#{applicationMB.userId!=null}">
-                                <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
+                                <input type="hidden" name="auserId" id="auserId" value="#{applicationMB.userId}"></input>
                             </c:if> 
                             
                            <h:commandLink id="retrieveApplicationTemplate" value="Retrieve application" action="#{applicationMB.retrieveApplicationTemplate}"/>
