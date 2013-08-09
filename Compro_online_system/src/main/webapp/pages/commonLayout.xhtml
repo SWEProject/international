@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+    <h:head>
+	<h:outputStylesheet library="css" name="default.css"/>
+         <h:outputStylesheet library="css" name="cssLayout.css"/>
+    </h:head>
+ 
+    <h:body>
+ 
+	<div id="page">
+ 
+            <div id="top" style="background-color: #ffffff">
+		<ui:insert name="top" >
+		  <ui:include src="commonHeader.xhtml" />
+		</ui:insert>
+	    </div>
+            <div id="left" style="width: 250px;margin-left:75px;background-color: #ffffff">
+	    	<ui:insert name="left" >
+	    	  <ui:include src="commonLeft.xhtml" />
+	    	</ui:insert>
+    	    </div>
+            <div id="content" style="background-color: #ffffff;">
+	  	<ui:insert name="content" >
+	 	  content
+	   	</ui:insert>
+	    </div>
+ 
+	    
+ 
+        </div>
+ 
+    </h:body>
+</html>
