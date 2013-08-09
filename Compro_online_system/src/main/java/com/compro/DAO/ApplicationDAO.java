@@ -130,6 +130,21 @@ public class ApplicationDAO {
                 while (rs.next()) {
                     Field field = new Field(rs.getInt("id"), rs.getString("name"), rs.getString("type"),
                             rs.getInt("order"), rs.getString("status"), secTemplate);
+                    
+                    
+                    Statement statement2 = null;
+                    String SQL2 = "select * from field_choice "
+                            + " where field_id = " + rs.getInt("id");
+
+                    System.out.println(SQL2);
+
+                    statement2 = con.createStatement();
+                    ResultSet rs2 = statement.executeQuery(SQL2);
+                    if (rs2 != null) {
+                        while (rs2.next()) {
+                            field.getChoices().add(rs2.getString("choice_value"));
+                        }
+                    }
                 }
             }
 
