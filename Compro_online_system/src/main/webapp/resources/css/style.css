@@ -41,6 +41,14 @@ a.hiddenanchor{
 	width: 500px;
 	position: relative;	
 }
+#wrapperl{
+	width: 60%;
+	right: 0px;
+	min-height: 560px;	
+	margin: 0px auto;	
+	width: 500px;
+	position: relative;	
+}
 /**** Styling the form elements **/
 
 /**** general text styling ****/
@@ -48,9 +56,12 @@ a.hiddenanchor{
 	color: rgb(95, 155, 198);
 	text-decoration: underline;
 }
-
+#wrapperl a{
+	color: rgb(95, 155, 198);
+	text-decoration: underline;
+}
 #wrapper h1{
-	font-size: 48px;
+	font-size: 25px;
 	color: rgb(6, 106, 117);
 	padding: 2px 0 10px 0;
 	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
@@ -113,7 +124,7 @@ input {
 #wrapper input:not([type="checkbox"]){
 	width: 92%;
 	margin-top: 4px;
-	padding: 10px 5px 10px 32px;	
+	/*padding: 10px 5px 10px 32px;*/	
 	border: 1px solid rgb(178, 178, 178);
 	-webkit-appearance: textfield;
 	-webkit-box-sizing: content-box;
@@ -306,6 +317,23 @@ p.change_link{
 	-moz-border-radius: 5px;
 		 border-radius: 5px;
 }
+
+#application{
+	position: absolute;
+	top: 0px;
+	width: 88%;	
+	padding: 18px 6% 60px 6%;
+	margin: 0 0 35px 0;
+	background: rgb(247, 247, 247);
+	border: 1px solid rgba(147, 184, 189,0.8);
+        -webkit-box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+	   -moz-box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;	      
+	-webkit-box-shadow: 5px;
+	-moz-border-radius: 5px;		
+       z-index: 22;
+			
+}
+
 #register{	
 	z-index: 21;
 	opacity: 0;
