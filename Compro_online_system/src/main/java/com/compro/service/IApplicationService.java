@@ -32,4 +32,6 @@ public interface IApplicationService {
     public boolean updateApplicationFieldForm(FieldForm fieldForm);
     
     public boolean insertChange(String applicationId,String fieldId,String value);
+    
+    public String checkRules(ApplicationForm applicationForm);
 }

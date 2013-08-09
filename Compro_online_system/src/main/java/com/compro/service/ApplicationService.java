@@ -73,4 +73,10 @@ public class ApplicationService implements IApplicationService{
         DAOFacade facade = new DAOFacade();
         return facade.insertChange(applicationId, fieldId, value);
     }
+    
+    public String checkRules(ApplicationForm applicationForm)
+    {
+        DAOFacade facade = new DAOFacade();
+        return facade.checkRules(applicationForm);
+    }
 }
