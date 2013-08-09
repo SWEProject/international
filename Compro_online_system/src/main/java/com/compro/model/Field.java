@@ -4,6 +4,9 @@
  */
 package com.compro.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Waseem
@@ -16,7 +19,8 @@ public class Field {
     private String status;
     private int order;
     private Section section;
-
+    private List<String> choices = new ArrayList();
+    
     public Field() {
     }
 
@@ -85,6 +89,14 @@ public class Field {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<String> getChoices() {
+        return choices;
+    }
+
+    public void setChoices(List<String> choices) {
+        this.choices = choices;
     }
     
 }
