@@ -139,7 +139,7 @@ public class ApplicationDAO {
                     System.out.println(SQL2);
 
                     statement2 = con.createStatement();
-                    ResultSet rs2 = statement.executeQuery(SQL2);
+                    ResultSet rs2 = statement2.executeQuery(SQL2);
                     if (rs2 != null) {
                         while (rs2.next()) {
                             field.getChoices().add(rs2.getString("choice_value"));
@@ -492,16 +492,11 @@ public class ApplicationDAO {
                     disposition = rs1.getString("disposition");
                     operator = rs1.getString("operator");
                     int value;
-                    String SQL2 = "select * from field_form "
-                    + "where application_form_id = " + applicationForm.getId() 
-                    + " AND field_id = " + field_id;
-                    System.out.println(SQL2);
-                    rs2 = statement2.executeQuery(SQL2);
-                    if (rs2 != null) 
-                    {
-                        if (rs2.next()) 
-                        {
-                            value = rs2.getInt("value");
+
+                            //value = rs2.getInt("value");
+                            value = Integer.parseInt(applicationForm.getFieldsValues().get(field_id));
+                            System.out.println("Ehsan ----- "+value);
+                            
                             if(operator.equalsIgnoreCase("g"))
                             {
                                 if(value>limit)
@@ -531,8 +526,6 @@ public class ApplicationDAO {
                                     break;
                                 }
                             }
-                        }
-                    }
                 }
             }
             con.commit();
