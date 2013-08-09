@@ -172,33 +172,33 @@ public class ApplicationManagedBean implements Serializable {
     }
     
     
-    public String reqChangeApplication()
+    public String changeApplication()
     {
         try {
-            //applicationTemplate = applicationService.getApplicationTemplate();
+            applicationTemplate = applicationService.getApplicationTemplate();
             
             
-            //String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
-            //setUserId(userId);
+            String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
+            setUserId(userId);
             
-            //System.out.println("User ID:"+userId); 
-           // ApplicationForm appForm = applicationService.getUserApplication(userId);
+            System.out.println("User ID:"+userId); 
+            ApplicationForm appForm = applicationService.getUserApplication(userId);
             
-            /*for(int i=0;i<applicationTemplate.getSections().size();i++)
+            for(int i=0;i<applicationTemplate.getSections().size();i++)
             {
                 Section sec = (Section)applicationTemplate.getSections().get(i);
                 for(int j=0;j<sec.getFields().size();j++)
                 {
                     Field f = (Field)sec.getFields().get(j);
                     String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(f.getId());
-                    System.out.println(f.getName()+" ----- "+fValue);
-                    if(!appForm.getFieldsValues().get(f.getId()).equals(fValue))
+                        
+                    if(!fValue.equals(appForm.getFieldsValues().get(f.getId())))
                     {
                         //need to insert new change and if there is a previous change change it to inactive
                         applicationService.insertChange(appForm.getId()+"", f.getId()+"" , fValue);
                     }
                 }
-            }*/
+            }
             
             return HOME;
         } catch (DataAccessException e) {
