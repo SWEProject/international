@@ -133,19 +133,27 @@ and open the template in the editor.
                                             </div>
                                         </c:forEach>
                                         
+                                        <table>
+                                            <tr>
+                                                
+                                        
                                         <c:if test="#{applicationMB.applicationForm.status =='active' || applicationMB.applicationForm.status ==null}">
-                                            <p class="login button">
+                                            <td><p class="login button">
                                                 <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/>
-                                            </p>
-                                            <p class="login button">
+                                            </p></td>
+                                            <td><p class="login button">
                                                 <p:commandButton id="submitApplication" value="Submit" action="#{applicationMB.submitApplication}" ajax="false"/>
-                                            </p>
+                                            </p></td>
+                                            
                                         </c:if> 
                                         <c:otherwise test="#{applicationMB.applicationForm.status =='submitted'}">
-                                            <p class="login button">
+                                            <td><p class="login button">
                                                 <p:commandButton id="changeApplication" value="Change Request" action="#{applicationMB.changeApplication}" ajax="false"/>
-                                            </p>                                         
+                                            </p></td>                                         
                                         </c:otherwise>
+                                                
+                                                    </tr>
+                                        </table>
                                     </h:form>
                                 </div>
                             </div>
