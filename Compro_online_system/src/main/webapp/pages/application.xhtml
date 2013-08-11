@@ -1,63 +1,116 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+     xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <h:head>
-        <script type="text/javascript" src="./../resources/css/prototype.js"></script>  
-        <script type="text/javascript" src="./../resources/css/calendarview.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="./../resources/css/calendarview.css" rel="stylesheet" type="text/css" />
         <title>Welcome to Compro online application</title>
+        
+ 	<script>
+		$(document).ready(function() {
+		  $('.nav-toggle').click(function(){
+			//get collapse content selector
+			var collapse_content_selector = $(this).attr('href');					
+ 
+			//make the collapse content to be shown or hide
+			var toggle_switch = $(this);
+			$(collapse_content_selector).toggle(function(){
+			  if($(this).css('display')=='none'){
+                                //change the button label to be 'Show'
+				//toggle_switch.html('Show');
+			  }else{
+                                //change the button label to be 'Hide'
+				//toggle_switch.html('Hide');
+			  }
+			});
+		  });
+ 
+		});	
+		</script>
+		<style>	
+		.round-border {
+			border: 1px solid #eee;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			padding: 10px;
+			margin-bottom: 5px;
+		}
+		</style>        
+        
     </h:head>
 
     <h:body>
         <h:outputStylesheet library="css" name="demo.css"  />
         <h:outputStylesheet library="css" name="style.css" />
         <h:outputStylesheet library="css" name="animate-custom.css"/>
-        <ui:composition template="commonLayout.xhtml">
+
+        
+        
+        <!--ui:composition template="commonLayout.xhtml">
 
 
-            <ui:define name="content">
-                <div class="container">
+            <ui:define name="content"-->
 
-                    <section>
-                        <div id="container_demo" >
+            <div class="container">
+           <header>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>	
+           </header>   
+                  
+                <section>
+
+                    <div id="container_demo" >
                             <div id="wrapper">
                                 <div id="application" class="animate form">
+                
+                          <h1>Application Form</h1>           
+                                    
+                <section class="round-border">
+                    <table>
+                            <tr>
+                    <c:forEach var="section1" items="${applicationMB.applicationTemplate.sections}">
+                        
+                                <td>
+                            <div>
+                                <p class="login button"> 
+				<button  href="#${section1.name}" class="nav-toggle">${section1.name}</button>
+                                </p>
+			</div>
+                                    </td>
+                                
+                    </c:forEach>
+                                </tr>
+                        </table>
+		</section>
                                     <h:form>  
-                                        <h1>Application Form</h1>
+                                      
                                         <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
                                         <input type="hidden" name="auserId" id="auserId" value="#{applicationMB.userId}"></input>
-                                        ${applicationMB.applicationTemplate.sections.size()}
-                                        <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
-                                            <c:if test="#{section.id=='1'}">
+                                     <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
+                                            <div id="${section.name}" style="display:none">
+                                                <section class="round-border">
                                                 <div id="">                                  
-                                                    <a class="hiddenanchor" id="#{section.id}"></a>
                                                     <label style="font-size: 20px; text-decoration-line: underline">${section.name}</label>
-
+		
                                                     <c:forEach var="field" items="${section.fields}">
                                                         <p>
-                                                            <label> #{field.name}</label>
+                                                            <label> #{field.name}:</label>
 
                                                             <c:if test="#{field.type=='string'}">
                                                                 <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
                                                             </c:if>
                                                             <c:if test="#{field.type=='date'}">
-                                                                <script type="text/javascript">
-                                                                    window.onload = function() {
-                                                                        Calendar.setup({
-                                                                            dateField: '#{field.id}',
-                                                                            triggerElement: 'calendarButton'
-                                                                        })
-                                                                    }
-                                                                </script>
-                                                                <input type="text" name="#{field.id}" id="#{field.id}" value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" readonly="readonly"/>
-                                                                <input type="button" id="calendarButton" value="Show Calendar" />
+                                                                #{applicationMB.applicationForm.fieldsValues.get(field.id)}
+                                                                <p:calendar value="#{calendarBean.date2}" id="_#{field.id}" />  
                                                             </c:if>
                                                             <c:if test="#{field.type=='list'}">
                                                                 <select name="#{field.id}" id="#{field.id}" value="c2">  
@@ -75,54 +128,11 @@
                                                             </c:if>
                                                         </p>
                                                     </c:forEach>                                 
-                                                    <a href="##{section.id}" class="to_register">Next</a>
                                                 </div>
-                                            </c:if>
-                                            <c:otherwise>
-                                                <div style="display: none;">                                  
-                                                    <a class="hiddenanchor" id="#{section.id}"></a>
-                                                    <label>${section.name}</label>
-
-                                                    <c:forEach var="field" items="${section.fields}">
-                                                        <p>
-                                                            <label> #{field.name}</label>
-
-                                                            <c:if test="#{field.type=='string'}">
-                                                                <input type="text" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
-                                                            </c:if>
-                                                            <c:if test="#{field.type=='date'}">
-                                                                <script type="text/javascript">
-                                                                    window.onload = function() {
-                                                                        Calendar.setup({
-                                                                            dateField: '#{field.id}',
-                                                                            triggerElement: 'calendarButton'
-                                                                        })
-                                                                    }
-                                                                </script>
-                                                                <input type="text" name="#{field.id}" id="#{field.id}" value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" readonly="readonly"/>
-                                                                <input type="button" id="calendarButton" value="Show Calendar" />
-                                                            </c:if>
-                                                            <c:if test="#{field.type=='list'}">
-                                                                <select name="#{field.id}" id="#{field.id}" value="c2">  
-                                                                    <option value=""></option>
-
-                                                                    <c:forEach var="choices" items="${field.choices}">
-                                                                        <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)==choices}">
-                                                                            <option value="#{choices}" selected="selected">#{choices}</option>
-                                                                        </c:if>
-                                                                        <c:if test="#{applicationMB.applicationForm.fieldsValues.get(field.id)!=choices}">
-                                                                            <option value="#{choices}" >#{choices}</option>  
-                                                                        </c:if>
-                                                                    </c:forEach>
-                                                                </select> 
-                                                            </c:if>
-                                                        </p>
-                                                    </c:forEach>                                 
-                                                    <a href="#toregister" class="to_register">Next</a>
-                                                </div>
-
-                                            </c:otherwise>
+                                            </section>
+                                            </div>
                                         </c:forEach>
+                                        
                                         <c:if test="#{applicationMB.applicationForm.status =='active' || applicationMB.applicationForm.status ==null}">
                                             <p class="login button">
                                                 <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/>
@@ -142,8 +152,8 @@
                         </div>
                     </section> 
                 </div>
-            </ui:define>
-        </ui:composition> 
+            <!--/ui:define>
+        </ui:composition--> 
 
 
     </h:body>
