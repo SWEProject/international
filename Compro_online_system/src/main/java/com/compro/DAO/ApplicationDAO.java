@@ -499,12 +499,19 @@ public class ApplicationDAO {
                             Statement statement2 = con.createStatement();
                             ResultSet rs2 = statement2.executeQuery(SQL2);
                             if (rs2 != null) {
+                                boolean finished=true;
                                 while (rs2.next()) {
                                     String limit = rs2.getString("value");
                                     if(value.equalsIgnoreCase(limit))
                                     {
+                                        finished= false;
                                         break;
                                     }
+                                }
+                                if(finished)
+                                {
+                                    result = disposition;
+                                    break;
                                 }
                             }
                         } 
