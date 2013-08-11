@@ -40,14 +40,22 @@
                                                 <f:validateRequired id="password"/>
                                                 <p:ajax event="blur" update="passwordMsg" />  
                                 </p:password>
-                                        <h:message id="passwordMsg" for="surname" style="color: red"/> 
+                                        <h:message id="passwordMsg" for="password" style="color: red"/> 
                                 </p>
                     
                                 <p class="login button"> 
-                                  <p:commandButton id="loginUser" value="Login" action="#{userMB.loginUser}" ajax="false"/>
+                                        <p:commandButton id="loginUser" value="Login" action="#{userMB.loginUser}" ajax="false"/>
                                   </p>
+                    
                    
                 </h:form>
+                       <h:form>
+                            <p>
+                        <p:separator></p:separator>
+                        <h:commandLink styleClass="" value="forgot password" action="forgotPassword"/>
+                    </p>  
+                       </h:form>     
+                        
                            <h:form>
                                
                                 <p class="change_link">

@@ -17,7 +17,7 @@ and open the template in the editor.
      <h:outputStylesheet library="css" name="animate-custom.css"/>
      <div id="wrapperl">
                      
-                      <h:form>
+          <h:form>
                           <div style="margin-top: 10px;">
                             <c:if test="#{userMB.id!=null}">
                                 <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
@@ -28,16 +28,16 @@ and open the template in the editor.
                             
                            <h:commandLink id="retrieveApplicationTemplate" value="Retrieve application" action="#{applicationMB.retrieveApplicationTemplate}"/>
                           </div>  
-                      </h:form>
+          </h:form>
                                                    
-                 <h:form>  
+         <h:form>  
                      <div style="margin-top: 50px;">
                    
-                    <h:inputHidden value="#{userMB.id}" id="id" />
-                    <h:commandLink value="My account" action="#{userMB.loginUser()}"/>                    
+                         <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
+                    <h:commandLink value="My account" action="#{userMB.getAccount()}"/>                    
                    
                          </div>
-                 </h:form>
-                 </div>
+         </h:form>
+        </div>
     </body>
 </html>
