@@ -12,6 +12,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import org.springframework.dao.DataAccessException;
 
 /**
@@ -19,7 +20,7 @@ import org.springframework.dao.DataAccessException;
  * @author Netsanet
  */
 @ManagedBean(name="userMB")
-@RequestScoped
+@SessionScoped
 public class UserManagedBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,6 +29,7 @@ public class UserManagedBean implements Serializable {
 	private static final String HOME = "home";
         private static final String REGISTER = "register";
         private static final String INDEX = "index";
+        private static final String ACCOUNT = "account";
         
         
 	//Spring User Service is injected...
@@ -35,7 +37,7 @@ public class UserManagedBean implements Serializable {
 	IUserService userService;
 	
 	List<User> userList;
-	
+	private String message;
 	private int id;
 	private String name;
         private String middlename;
@@ -61,7 +63,7 @@ public class UserManagedBean implements Serializable {
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		} 	
-		
+		 setMessage("register");
 		return ERROR;
 	}
 	
@@ -72,13 +74,19 @@ public class UserManagedBean implements Serializable {
 			
 			user.setPassword(getPassword());
                         user.setEmail(getEmail());
+                        
 			User u = getUserService().loginUser(user);
-                         setId(u.getId());
+                       
                         
 			if(u == null)
+                        { 
+                            setMessage("login");
                             return ERROR;
-                        else    
+                        }
+                        else{   
+                            setId(u.getId());
                             return HOME;
+                        }
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		} 	
@@ -114,6 +122,39 @@ public class UserManagedBean implements Serializable {
 		return userList;
 	}
 	
+       public String getAccount(){
+           User user=getUserService().getAccount(getId());
+           if(user!=null){
+              setId(user.getId());
+               setEmail(user.getEmail());
+               setMiddlename(user.getMiddlename());
+               setName(user.getName());
+               setSurname(user.getSurname());
+           }
+           return ACCOUNT;
+       }
+       
+       public String changePassword(){
+           
+            boolean ret= getUserService().changePassword(getId());
+             setMessage("change password");
+            if(ret)
+               return SUCCESS;
+           
+            else
+                return ERROR;
+            
+       }
+       
+       public String forgotPassword(){
+           
+          boolean ret= getUserService().forgotPassword(getEmail());
+           setMessage("forgot password");
+            if(ret)
+             return SUCCESS;
+            else
+              return ERROR;
+       }
 	/**
 	 * Get User Service
 	 * 
@@ -208,7 +249,12 @@ public class UserManagedBean implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
-	
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

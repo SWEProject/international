@@ -17,26 +17,40 @@
         <h:outputStylesheet library="css" name="demo.css"  />
      <h:outputStylesheet library="css" name="style.css" />
      <h:outputStylesheet library="css" name="animate-custom.css"/>
-        <ui:composition template="commonLayout.xhtml">
-
-            
+        <ui:composition template="commonLayout.xhtml">        
             <ui:define name="content">
-             <div class="container">
+             <div class="container" style="width:50%; margin: 10px 300px;">
                 
              <section>
-               <div id="container_demo" >
+               <div id="container_demo" >                   
                   <div id="wrapper">
-                   <div id="application" class="animate form">
-                     <h:form>  
-                         <h1>Application Form</h1>
+                     <h:form>     
+                      <h:link class="hiddenanchor" id="toregister"/>
+                     <h:link class="hiddenanchor" id="tologin"/>
+                     <h1>Application Form</h1>
                             <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
-${applicationMB.applicationTemplate.sections.size()}
+                            ${ applicationMB.applicationTemplate.sections.size()}
                                 <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
-                              <c:if test="#{section.id=='1'}">
-                                    <div id="">                                  
-                                    <a class="hiddenanchor" id="#{section.id}"></a>
+                              
+                                    
+                                    <c:if test="#{section.id=='1'}">
+                                    <div id="login" class="animate form">                                  
+                                  
                                     <label style="font-size: 20px; text-decoration-line: underline">${section.name}</label>
-                           
+
+<h:panelGroup>
+    <h:inputText id="TitleText" value="#{section.name}"/>
+    <h:commandButton value="Clients" actionListener="#{bindingScheduleHandler.clientList}" />
+
+    <h:selectOneListbox id="listBox" value="#{bindingScheduleHandler.clients}" size="5"  
+        rendered="#{bindingScheduleHandler.showClients}">
+        <f:selectItems value="#{bindingScheduleHandler.clientLabelsValues}" />
+        <f:ajax event="click" listener="#{bindingScheduleHandler.clickListener}"  
+            render="TitleText" />
+    </h:selectOneListbox>
+</h:panelGroup>
+                                   
+                                    
                                     <c:forEach var="field" items="${section.fields}">
                                         <p>
                                         <label> #{field.name}</label>
@@ -45,15 +59,20 @@ ${applicationMB.applicationTemplate.sections.size()}
                                          <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
                                      </c:if>
                                         </p>
-                                    </c:forEach>                                 
-                        <a href="##{section.id}" class="to_register">Next</a>
-                        </div>
+                                    </c:forEach>        
+                                    
+                                    <h:link target="#toregister"   class="to_register" value="Next"/>
+                        
+                                    
+                                    
+                                    </div>
                          </c:if>
-                                    <c:otherwise>
-                                        <div style="display: none;">                                  
-                                    <a class="hiddenanchor" id="#{section.id}"></a>
-                                    <label>${section.name}</label>
-                           
+                         <c:if test="#{section.id!='1'}">
+                               <div id="register" class="animate form">                                  
+ 
+
+
+                                    
                                     <c:forEach var="field" items="${section.fields}">
                                         <p>
                                         <label> #{field.name}</label>
@@ -62,17 +81,18 @@ ${applicationMB.applicationTemplate.sections.size()}
                                          <input type="text" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
                                      </c:if>
                                         </p>
-                                    </c:forEach>                                 
-                        <a href="#toregister" class="to_register">Next</a>
+                                    </c:forEach>    
+                                   
+                                 <h:link target="#tologin" class="to_register" value="Next"/>
                         </div>
                                         
-                                    </c:otherwise>
+                        </c:if>
                         </c:forEach>
                             <p class="login button">
                         <p:commandButton id="saveApplication" value="Save" action="#{applicationMB.saveApplication}" ajax="false"/>
                             </p>
                      </h:form>
-                      </div>
+                     
                   </div>
                 </div>
                 </section> 

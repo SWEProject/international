@@ -68,5 +68,59 @@ public class UserService implements IUserService {
             }
             return user;
         }
-
+        
+        @Transactional(readOnly = false)
+        
+        public User getAccount(int id){
+            User user=new User();
+            try{
+                user=facadeDAO.getAccount(id);
+             }catch (Exception ex) {
+                Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+            
+            return user;
+        }
+        
+        @Transactional(readOnly = false)
+        public boolean changePassword(int id){
+            
+            try{
+                String p = PasswordGenerator.getPassword(6);
+                boolean val=facadeDAO.changePassword(p, id);
+                if(val){
+                     User user=new User();
+                    user=facadeDAO.getAccount(id);
+                  SendMail sendMail=new SendMail("cs425.intl@gamil.com", user.getEmail(),"Mum application password","Dear "+user.getName()+"\n please use the below password to login.\n"+p);
+                 sendMail.send();  
+                }
+                return val;
+            }catch (Exception ex) {
+                Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+           }
+          return false;
+        }
+        
+        public boolean forgotPassword(String email){
+           
+            try{
+               User user=facadeDAO.getUserByEamil(email);
+                if(user!=null){
+                  return changePassword(user.getId()); 
+                }
+             }catch (Exception ex) {
+                Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return false;
+        }
+//        public User getUserByEamil(String email){
+//             User user=new User();
+//            try{
+//                user=facadeDAO.getUserByEamil(email);
+//             }catch (Exception ex) {
+//                Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+//            }   
+//            
+//            return user;
+//        }
 }
