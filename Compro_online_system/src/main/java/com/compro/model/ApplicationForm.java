@@ -21,6 +21,7 @@ public class ApplicationForm {
     private int userId;
     private List<FieldForm> fieldsForm  = new ArrayList();
     private HashMap<Integer,String> fieldsValues = new HashMap();
+    private HashMap<Integer,String> newFieldsValues = new HashMap();
     
     public ApplicationForm() {
     }
@@ -111,6 +112,14 @@ public class ApplicationForm {
 
     public void setFieldsValues(HashMap<Integer, String> fieldsValues) {
         this.fieldsValues = fieldsValues;
+    }
+
+    public HashMap<Integer, String> getNewFieldsValues() {
+        return newFieldsValues;
+    }
+
+    public void setNewFieldsValues(HashMap<Integer, String> newFieldsValues) {
+        this.newFieldsValues = newFieldsValues;
     }
     
 }
