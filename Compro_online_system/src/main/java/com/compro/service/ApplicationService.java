@@ -11,6 +11,7 @@ import com.compro.DAO.DAOFacade;
 import com.compro.model.ApplicationForm;
 import com.compro.model.FieldForm;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,5 +79,18 @@ public class ApplicationService implements IApplicationService{
     {
         DAOFacade facade = new DAOFacade();
         return facade.checkRules(applicationForm);
+    }
+    
+        public List<ApplicationForm> getAllApplication() 
+    {
+        DAOFacade facade = new DAOFacade();
+        return facade.getAllApplication();
+    }
+    
+    public boolean overrideDisposition(String disposition, String status, String userId)
+    {
+        DAOFacade facade = new DAOFacade();
+        return facade.overrideDisposition(disposition, status, userId);
+                
     }
 }

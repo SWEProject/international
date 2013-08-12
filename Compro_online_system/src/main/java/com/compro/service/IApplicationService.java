@@ -7,6 +7,7 @@ package com.compro.service;
 import com.compro.model.Application;
 import com.compro.model.ApplicationForm;
 import com.compro.model.FieldForm;
+import java.util.List;
 
 /**
  *
@@ -34,4 +35,15 @@ public interface IApplicationService {
     public boolean insertChange(String applicationId,String fieldId,String value);
     
     public String checkRules(ApplicationForm applicationForm);
+    
+        public List<ApplicationForm> getAllApplication();
+    
+    /**
+     *
+     * @param disposition
+     * @param status
+     * @param userId
+     * @return
+     */
+    public boolean overrideDisposition(String disposition ,String status ,String userId);
 }
