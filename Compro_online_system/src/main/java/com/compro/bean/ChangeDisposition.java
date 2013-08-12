@@ -33,6 +33,7 @@ public class ChangeDisposition implements Serializable {
     
     private static final String ERROR = "error";
     private static final String APPLICATIONWITHDISPOSITION = "ApplicationWithDisposition";
+    private static final String CHANGEAPPLICATIONDISPOSITION = "ChangeApplicationDisposition";
     private static final String HOME = "home";
     private static final String SUCCESS = "success";
     
@@ -49,10 +50,14 @@ public class ChangeDisposition implements Serializable {
     public String submitApplication(String disposition, String status)
     {
         boolean result = false;
+        
         result = applicationService.overrideDisposition(disposition, status, this.userId);
         
+        application = new ArrayList<ApplicationForm>();
+        application = getApplicationService().getAllApplication();
+        
         if(result)
-            return SUCCESS;
+            return CHANGEAPPLICATIONDISPOSITION;
         
         
             return ERROR;
