@@ -44,6 +44,9 @@
 	        <from-outcome>ChangeApplicationDisposition</from-outcome>
             <to-view-id>/pages/ChangeApplicationDisposition.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
-   
+         </navigation-rule>
+           <navigation-case>
+	        <from-outcome>ApplicationWithDisposition</from-outcome>
+            <to-view-id>/pages/ApplicationWithDisposition.xhtml</to-view-id>
+        </navigation-case>
 </faces-config>
