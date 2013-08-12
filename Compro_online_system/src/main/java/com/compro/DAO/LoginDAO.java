@@ -56,6 +56,7 @@ class LoginDAO {
                     user.setMiddlename(rs.getString("mName"));
                     user.setEmail(rs.getString("email"));
                     user.setPassword(rs.getString("pasword"));
+                    user.setRole(rs.getString("role"));
                     flag = true;
 
                 }
