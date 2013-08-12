@@ -218,34 +218,26 @@ public class ApplicationDAO {
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = "select * from field_form "
-                    + "where application_form_id = " + applicationForm.getId();
-
+            String SQL = " select field_form.*,field_form_change.value newvalue  from field_form left outer join field_form_change " +
+                         " on (field_form.id = field_form_change.field_form_id) " +
+                         " where field_form.application_form_id = "+applicationForm.getId()+
+                         " and (field_form_change.status = 'active' or field_form_change.status is null) ";
+            
             System.out.println(SQL);
 
             statement = con.createStatement();
             ResultSet rs = statement.executeQuery(SQL);
             if (rs != null) {
                 while (rs.next()) {
-                    /*Field field = null;
-                    String SQL2 = "select * from field "
-                            + "where id = " + fieldId;
-                    System.out.println(SQL2);
-
-                   // statement = con.createStatement();
-                    ResultSet rs2 = statement.executeQuery(SQL2);
-                    if (rs2 != null) {
-                        if (rs2.next()) {
-                            System.out.println("xxxx");
-                            field = new Field(rs2.getInt("id"), rs2.getString("name"), rs2.getString("type"),
-                                    rs2.getInt("order"), rs2.getString("status"), new Section());
-                            System.out.println("yyyy");
-                        }
-                    }
-*/
-                    //FieldForm fieldForm = new FieldForm(rs.getInt("id"), rs.getString("value"), applicationForm, null);
+                    
+                    
                     applicationForm.getFieldsValues().put(new Integer(rs.getInt("field_id")), rs.getString("value"));
-                    System.out.println("yyyy");
+                    if(rs.getString("newvalue") == null || rs.getString("newvalue").equalsIgnoreCase("null") )
+                    {
+                        
+                    }else{
+                        applicationForm.getNewFieldsValues().put(new Integer(rs.getInt("field_id")), rs.getString("newvalue"));
+                    }
                 }
             }
 
