@@ -40,6 +40,10 @@
 	        <from-outcome>application</from-outcome>
             <to-view-id>/pages/application.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+	        <from-outcome>ChangeApplicationDisposition</from-outcome>
+            <to-view-id>/pages/ChangeApplicationDisposition.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
    
 </faces-config>
