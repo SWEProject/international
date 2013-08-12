@@ -30,6 +30,7 @@ public class FieldForm {
         this.field = field;
         
         this.applicationForm.addFieldForm(this);
+        
     }
 
     
