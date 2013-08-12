@@ -19,6 +19,9 @@ public interface IUserService {
 	 */
 	public void addUser(User user);
 	public User loginUser(User user);
+        public User getAccount(int id);
+        public boolean changePassword(int id);
+        public boolean forgotPassword(String email);
         
 	/**
 	 * Update User
