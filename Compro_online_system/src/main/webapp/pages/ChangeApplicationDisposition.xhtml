@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>List Of Applications</title>
+     <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"  />
+     <h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+    <body>
+        <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"  />
+     <h:outputStylesheet library="css" name="table-style.css"  />
+           <div class="container">
+     <header>
+                <h1>Applications <span> List</span></h1>
+				
+            </header>
+          <section>
+              
+              <div id="container_demo" >
+                  <div id="wrapper">
+                       <div id="login" class="animate form">
+         
+      <h:form>
+
+            <h:dataTable id="dataTable" var="applicationn" value="#{tableBean.application}"
+                         styleClass="application-table"
+    			 headerClass="application-table-header"
+    			 rowClasses="application-table-odd-row,application-table-even-row">
+
+        <f:facet name="header">
+            List Of Applications
+        </f:facet>
+
+        <h:column>
+            <f:facet name="header">
+                App Id
+            </f:facet>
+            <h:outputText value="#{applicationn.id}" />
+        </h:column>
+
+        <h:column >
+            <f:facet name="header">
+                User Id
+            </f:facet>
+            
+           <h:commandLink value="#{applicationn.userId}" action="#{tableBean.comeHere(applicationn.userId)}"/>
+               
+           
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                Status
+            </f:facet>
+            <h:outputText value="#{applicationn.status}" />
+        </h:column>
+
+        <h:column >
+            <f:facet name="header">
+                Disposition
+            </f:facet>
+            <h:outputText value="#{applicationn.disposition}" />
+        </h:column>
+
+         <h:column >
+            <f:facet name="header">
+                Creation Date
+            </f:facet>
+             <h:outputText value="#{applicationn.creationDate}" />
+        </h:column>
+                
+        <h:column >
+            <f:facet name="header">
+                Last Modified Date
+            </f:facet>
+            <h:outputText value="#{applicationn.lastModifiedDate}" />
+        </h:column>
+                
+        <f:facet name="footer">
+           Please click on the User Id to get more Information
+        </f:facet>
+
+    </h:dataTable>
+   </h:form>
+                        </div>
+                  </div>
+             </div>
+            </section>
+     </div>          
+ </body>
+</html>
