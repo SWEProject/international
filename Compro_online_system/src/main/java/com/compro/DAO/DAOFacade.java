@@ -8,7 +8,8 @@ import com.compro.model.Application;
 import com.compro.model.ApplicationForm;
 import com.compro.model.FieldForm;
 import java.sql.SQLException;
-import com.compro.model.User;;
+import com.compro.model.User;import java.util.List;
+;
 
 /**
  *
@@ -16,6 +17,8 @@ import com.compro.model.User;;
  */
 public class DAOFacade {
       
+    AdmissionStaffDAO admissionStaffDAO = new AdmissionStaffDAO();
+    
     public User login(String email, String passWord) throws SQLException
     {
         User user ;
@@ -89,5 +92,16 @@ public class DAOFacade {
     
     public User getUserByEamil(String email){
         return UserDAO.getUserByEamil(email);
+    }
+    
+        public List<ApplicationForm> getAllApplication() 
+    {
+        return admissionStaffDAO.getAllApplication();
+    }
+    
+    public boolean overrideDisposition(String disposition, String status, String userId)
+    {
+        
+        return admissionStaffDAO.overrideDisposition(disposition, status, userId);
     }
 }
