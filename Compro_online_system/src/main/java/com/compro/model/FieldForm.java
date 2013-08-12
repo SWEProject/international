@@ -14,7 +14,8 @@ public class FieldForm {
     private String value;
     private ApplicationForm applicationForm;
     private Field field;
-
+    private String newSuggestedValue;
+    
     public FieldForm(int id, String value, ApplicationForm applicationForm, Field field) {
         this.id = id;
         this.value = value;
@@ -65,6 +66,14 @@ public class FieldForm {
 
     public void setField(Field field) {
         this.field = field;
+    }
+
+    public String getNewSuggestedValue() {
+        return newSuggestedValue;
+    }
+
+    public void setNewSuggestedValue(String newSuggestedValue) {
+        this.newSuggestedValue = newSuggestedValue;
     }
     
     
