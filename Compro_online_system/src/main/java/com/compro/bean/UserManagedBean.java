@@ -94,7 +94,7 @@ public class UserManagedBean implements Serializable {
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		} 	
-		
+		setMessage("login");
 		return ERROR;
         }
         
