@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+     xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">  
+ <h:head><title>Welcome to Compro online application</title></h:head>
+    <body>
+          <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"/>
+     
+        <ui:composition template="commonLayout.xhtml">
+            
+            <ui:define name="content">
+                <div class="container" style="width:50%; margin: 10px 300px;">
+             <section>
+               <div id="container_demo" >
+                   
+                  <div id="wrapper">
+                     <h:form>  
+                         <p>
+                            <h:outputLabel for="name" value="Name : " />
+                           <h:outputText id="name" value="#{userMB.name}" />
+                         </p>
+                         <p>
+                          <h:outputLabel for="mname" value="Middle Name : " /> 
+                           <h:outputText id="mname" value="#{userMB.middlename}" />   
+                         </p>
+                         <p>
+                             <h:outputLabel for="surname" value="Surname : " /> 
+                             <h:outputText id="surname" value="#{userMB.surname}"/>
+                         </p>
+                         <p>
+                            <h:outputLabel for="email" value="Email : " />
+                            <h:outputText id="email" value="#{userMB.email}"/>  
+                         </p>
+                         
+                            <p>
+                        <p:separator></p:separator>
+                       <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
+                        <h:commandLink styleClass="" value="Change password" action="#{userMB.changePassword()}"/>
+                    </p>  
+                   
+                     </h:form>
+                      
+                  </div>
+               </div>
+             </section>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

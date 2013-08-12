@@ -1,35 +1,22 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+     xmlns:h="http://java.sun.com/jsf/html" 
+     xmlns:f="http://java.sun.com/jsf/core" 
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<title>Welcome to Compro online application</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h:outputText value="Registration Successful..."></h:outputText>
-                <p:commandButton id="redirectToLogin" value="Add" action="#{userMB.addUser}" ajax="false"/>
-		<!--p:dataTable id="users" var="user" value="#{userMB.userList}" style="width: 10%">
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="ID" />
-				</f:facet>
-				<h:outputText value="#{user.id}" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="Name" />
-				</f:facet>
-				<h:outputText value="#{user.name}" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="Surname" />
-				</f:facet>
-				<h:outputText value="#{user.surname}" />
-			</p:column>
-		</p:dataTable-->
-	</h:form>
+    <h:form>  
+	<c:if test="#{userMB.message=='change password'}">
+             <h2><h:outputText value="password changed!"></h:outputText> </h2> 
+             <p:commandButton id="back" value="Back" action="account" ajax="false"/>
+         </c:if>
+         <c:if test="#{userMB.message=='forgot password'}">
+             <h2><h:outputText value="password reset please check your email!"></h:outputText> </h2> 
+             <p:commandButton id="back" value="Back" action="index" ajax="false"/>
+         </c:if>     
+    </h:form>	
 </h:body>
 
 </html>
