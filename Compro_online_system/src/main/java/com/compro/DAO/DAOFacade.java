@@ -77,4 +77,17 @@ public class DAOFacade {
     {
         return ApplicationDAO.checkRules( applicationForm);
     }
+    
+        public User getAccount(int id){
+       return UserDAO.getAccount(id);
+    }
+    
+    public boolean changePassword(String password, int id){
+        return UserDAO.changePassword(password, id);
+       
+    }
+    
+    public User getUserByEamil(String email){
+        return UserDAO.getUserByEamil(email);
+    }
 }
