@@ -30,6 +30,7 @@ public class UserManagedBean implements Serializable {
         private static final String REGISTER = "register";
         private static final String INDEX = "index";
         private static final String ACCOUNT = "account";
+        private static final String ChangeApplicationDisposition = "ChangeApplicationDisposition";
         
         
 	//Spring User Service is injected...
@@ -85,7 +86,10 @@ public class UserManagedBean implements Serializable {
                         }
                         else{   
                             setId(u.getId());
-                            return HOME;
+                            if(u.getRole().equals("applicant"))
+                                return HOME;
+                            else if(u.getRole().equals("admission"))
+                               return ChangeApplicationDisposition;
                         }
 		} catch (DataAccessException e) {
 			e.printStackTrace();
