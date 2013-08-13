@@ -25,8 +25,8 @@ class ConnectionManager {
 	        try {
                    
 	            Class.forName("com.mysql.jdbc.Driver");
-	            String connectionUrl = "jdbc:mysql://localhost:3306/compro";
-	            con = DriverManager.getConnection(connectionUrl,"root","root");
+	            String connectionUrl = "jdbc:mysql://localhost:3306/test";
+	            con = DriverManager.getConnection(connectionUrl,"root","miromiro");
 
 	        } catch (Exception e) {
 	            System.out.println(e.getMessage());

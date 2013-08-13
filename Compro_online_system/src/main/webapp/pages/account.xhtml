@@ -14,15 +14,24 @@ and open the template in the editor.
           <h:outputStylesheet library="css" name="demo.css"  />
      <h:outputStylesheet library="css" name="style.css" />
      <h:outputStylesheet library="css" name="animate-custom.css"/>
-     
-        <ui:composition template="commonLayout.xhtml">
-            
-            <ui:define name="content">
-                <div class="container" style="width:50%; margin: 10px 300px;">
+
+                <div class="container">
+                     <header>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>	
+           </header>
              <section>
                <div id="container_demo" >
                    
                   <div id="wrapper">
+                      <h:form>
+                               
+                                    <p class="logout" style="padding: 0px 100px 20px;">
+                                 
+                                 <h:commandLink value="Logout" action="#{userMB.logOut()}"/>
+                               
+                                </p>
+                           </h:form> 
+                                
                      <h:form>  
                          <p>
                             <h:outputLabel for="name" value="Name : " />
@@ -44,7 +53,7 @@ and open the template in the editor.
                             <p>
                         <p:separator></p:separator>
                        <input type="hidden" name="userId" id="userId" value="#{userMB.id}"></input>
-                        <h:commandLink styleClass="" value="Change password" action="#{userMB.changePassword()}"/>
+                        <h:commandLink value="Change password" action="changePassword"/>
                     </p>  
                    
                      </h:form>
@@ -53,7 +62,6 @@ and open the template in the editor.
                </div>
              </section>
                 </div>
-            </ui:define>
-        </ui:composition>
+         
     </body>
 </html>

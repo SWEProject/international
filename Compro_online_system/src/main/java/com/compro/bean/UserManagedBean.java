@@ -45,6 +45,7 @@ public class UserManagedBean implements Serializable {
 	private String surname;
 	private String email;
         private String password;
+        private String oldpassword;
         
 	/**
 	 * Add User
@@ -79,7 +80,7 @@ public class UserManagedBean implements Serializable {
 			User u = getUserService().loginUser(user);
                        
                         
-			if(u == null)
+			if(u == null||u.getEmail()==null)
                         { 
                             setMessage("login");
                             return ERROR;
@@ -113,8 +114,19 @@ public class UserManagedBean implements Serializable {
 		this.setName("");
                 this.setMiddlename("");
 		this.setSurname("");
+                this.setMessage("");
+                this.setPassword("");
 	}
 	
+        public String logOut() {
+		this.setEmail("");
+		this.setName("");
+                this.setMiddlename("");
+		this.setSurname("");
+                this.setMessage("");
+                this.setPassword("");
+                return INDEX;
+	}
 	/**
 	 * Get User List
 	 * 
@@ -140,8 +152,13 @@ public class UserManagedBean implements Serializable {
        
        public String changePassword(){
            
-            boolean ret= getUserService().changePassword(getId());
-             setMessage("change password");
+           User user = new User();
+           
+		user.setId(getId());		
+		user.setPassword(getPassword());
+                user.setEmail(getEmail());
+            boolean ret= getUserService().changePassword(user);
+            setMessage("change password");
             if(ret)
                return SUCCESS;
            
@@ -261,4 +278,14 @@ public class UserManagedBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getOldpassword() {
+        return oldpassword;
+    }
+
+    public void setOldpassword(String oldpassword) {
+        this.oldpassword = oldpassword;
+    }
+    
+    
 }

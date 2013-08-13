@@ -218,11 +218,16 @@ public class ApplicationDAO {
             con.setAutoCommit(false);
 
             Statement statement = null;
-            String SQL = " select field_form.*,field_form_change.value newvalue  from field_form left outer join field_form_change " +
+            /*String SQL = " select field_form.*,field_form_change.value newvalue  from field_form left outer join field_form_change " +
                          " on (field_form.id = field_form_change.field_form_id) " +
                          " where field_form.application_form_id = "+applicationForm.getId()+
                          " and (field_form_change.status = 'active' or field_form_change.status is null) ";
+            */
             
+            String SQL = "select field_form.*,ffc.value newvalue " +
+                        " from field_form left outer join (select * from field_form_change where status = 'active') ffc " +
+                        " on (field_form.id = ffc.field_form_id)  " +
+                        " where field_form.application_form_id = "+applicationForm.getId();
             System.out.println(SQL);
 
             statement = con.createStatement();
@@ -431,6 +436,13 @@ public class ApplicationDAO {
 
                     Statement statement2 = con.createStatement();
                     statement2.executeUpdate(SQL);
+                    
+                    String fieldFormId = rs.getString("id");
+                    String SQL3 = "update field_form_change set status = 'inactive' where field_form_id ="+fieldFormId;
+                    System.out.println(SQL3);
+                    
+                    Statement statement3 = con.createStatement();
+                    statement3.executeUpdate(SQL3);
                 }else
                 {
                     insertApplicationFieldForm(fieldForm);

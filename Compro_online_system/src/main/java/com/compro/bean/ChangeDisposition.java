@@ -6,15 +6,20 @@ package com.compro.bean;
 
 import com.compro.model.Application;
 import com.compro.model.ApplicationForm;
+import com.compro.model.Field;
+import com.compro.model.FieldForm;
 import com.compro.model.Section;
 import com.compro.service.IApplicationService;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.springframework.dao.DataAccessException;
 
 
@@ -36,7 +41,7 @@ public class ChangeDisposition implements Serializable {
     private static final String CHANGEAPPLICATIONDISPOSITION = "ChangeApplicationDisposition";
     private static final String HOME = "home";
     private static final String SUCCESS = "success";
-    
+    private static final String SEARCHAPPLICATION = "SearchApplication";
     
     
     @PostConstruct
@@ -49,18 +54,35 @@ public class ChangeDisposition implements Serializable {
     
     public String submitApplication(String disposition, String status)
     {
-        boolean result = false;
+        //result = applicationService.overrideDisposition(disposition, status, this.userId);
         
-        result = applicationService.overrideDisposition(disposition, status, this.userId);
+        ApplicationForm appForm = applicationService.getUserApplication(this.userId);
+        appForm.setDisposition(disposition);
+        appForm.setStatus(status);
+        appForm.setFieldsForm(new ArrayList());
+        
+        for(int i=0;i<applicationTemplate.getSections().size();i++)
+        {
+            Section sec = (Section)applicationTemplate.getSections().get(i);
+            for(int j=0;j<sec.getFields().size();j++)
+            {
+                Field f = (Field)sec.getFields().get(j);
+                String fieldKey = f.getId()+"";
+                String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(fieldKey);
+                System.out.println(f.getName()+" --1-- "+fValue);
+
+                FieldForm fieldForm = new FieldForm(fValue,appForm ,f);
+            }
+        }
+
+        applicationService.updateApplicationForm(appForm);
         
         application = new ArrayList<ApplicationForm>();
         application = getApplicationService().getAllApplication();
+        applicationForm = applicationService.getUserApplication(this.userId);
         
-        if(result)
-            return CHANGEAPPLICATIONDISPOSITION;
+        return CHANGEAPPLICATIONDISPOSITION;
         
-        
-            return ERROR;
     }
     
     
@@ -86,6 +108,34 @@ public class ChangeDisposition implements Serializable {
         return ERROR;
     }
         
+     public String searchApplication(String userId)
+    {
+        try 
+        {
+            
+            setUserId(userId);
+            
+            applicationTemplate = applicationService.getApplicationTemplate();
+            applicationForm = applicationService.getUserApplication(userId);
+            
+            if(applicationTemplate == null || applicationForm == null)
+            {
+                return ERROR;
+            }
+            
+            setDisposition(applicationForm.getDisposition());
+            setStatus(applicationForm.getStatus());
+            
+            return SEARCHAPPLICATION;
+        } 
+        catch (DataAccessException e) 
+        {
+            e.printStackTrace();
+        }
+
+        return ERROR;
+    }
+    
       /**
      * @return the application
      */

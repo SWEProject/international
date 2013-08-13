@@ -34,6 +34,7 @@ and open the template in the editor.
 		  });
  
 		});	
+                
 		</script>
 		<style>	
 		.round-border {
@@ -65,11 +66,18 @@ and open the template in the editor.
            <header>
                 <h1>Maharishi University<span> Computer Science Program</span></h1>	
            </header>   
-                  
-                <section>
+               <section>
 
                     <div id="container_demo" >
                             <div id="wrapper">
+                                <h:form>
+                               
+                                    <p class="logout" style="padding: 0px 100px 20px;">
+                                 
+                                 <h:commandLink value="Logout" action="#{userMB.logOut()}"/>
+                               
+                                </p>
+                           </h:form> 
                                 <div id="application" class="animate form">
                 
                           <h1>Application Form</h1>           
@@ -91,8 +99,9 @@ and open the template in the editor.
                                 </tr>
                         </table>
 		</section>
+                              
+                                                    
                                     <h:form>  
-                                      
                                         <input type="hidden" name="userId" id="userId" value="#{applicationMB.userId}"></input>
                                         <input type="hidden" name="auserId" id="auserId" value="#{applicationMB.userId}"></input>
                                      <c:forEach var="section" items="${applicationMB.applicationTemplate.sections}">
@@ -100,17 +109,16 @@ and open the template in the editor.
                                                 <section class="round-border">
                                                 <div id="">                                  
                                                     <label style="font-size: 20px; text-decoration-line: underline">${section.name}</label>
-		
                                                     <c:forEach var="field" items="${section.fields}">
                                                         <p>
                                                             <label> #{field.name}:</label>
 
                                                             <c:if test="#{field.type=='string'}">
-                                                                <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
+                                                                <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{applicationMB.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}"></input>
                                                             </c:if>
                                                             <c:if test="#{field.type=='date'}">
                                                                 #{applicationMB.applicationForm.fieldsValues.get(field.id)}
-                                                                <p:calendar value="#{calendarBean.date2}" id="_#{field.id}" />  
+                                                                <p:calendar value="#{calendarBean.date2}" id="_#{field.id}"/>  
                                                             </c:if>
                                                             <c:if test="#{field.type=='list'}">
                                                                 <select name="#{field.id}" id="#{field.id}" value="c2">  

@@ -6,7 +6,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>List Of Applications</title>
      <h:outputStylesheet library="css" name="demo.css"  />
@@ -15,31 +16,35 @@ and open the template in the editor.
      <h:outputStylesheet library="css" name="table-style.css"  />
     </h:head>
     <body>
-        <h:outputStylesheet library="css" name="demo.css"  />
-     <h:outputStylesheet library="css" name="style.css" />
-     <h:outputStylesheet library="css" name="animate-custom.css"  />
-     <h:outputStylesheet library="css" name="table-style.css"  />
-           <div class="container">
+        <div class="container">
      <header>
-                <h1>Applications <span> List</span></h1>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>
 				
             </header>
-          <section>
-              
-              <div id="container_demo" >
+         <section>
+             
+             <div id="container_demo" >
                   <div id="wrapper">
-                       <div id="login" class="animate form">
-         
+                              <h:form>
+                              <p class="logout" style="padding: 0px 33  0px 20px;">
+                                  <h:commandLink value="Search" action="SearchApplication"/>
+                                 <h:commandLink value="Logout" action="#{userMB.logOut()}"/>
+                                 
+                              </p>
+                              </h:form> 
+                              
+                      <div id="application" class="animate form" style="width:130%;">
+           
       <h:form>
-
+         <h1>
+            List Of Applications
+        </h1> 
             <h:dataTable id="dataTable" var="applicationn" value="#{tableBean.application}"
                          styleClass="application-table"
     			 headerClass="application-table-header"
     			 rowClasses="application-table-odd-row,application-table-even-row">
 
-        <f:facet name="header">
-            List Of Applications
-        </f:facet>
+        
 
         <h:column>
             <f:facet name="header">
@@ -85,7 +90,7 @@ and open the template in the editor.
             </f:facet>
             <h:outputText value="#{applicationn.lastModifiedDate}" />
         </h:column>
-                
+       <p:separator></p:separator>         
         <f:facet name="footer">
            Please click on the User Id to get more Information
         </f:facet>
@@ -96,6 +101,8 @@ and open the template in the editor.
                   </div>
              </div>
             </section>
-     </div>          
+     </div> 
+        
+
  </body>
 </html>

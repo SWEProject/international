@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+         <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"  />
+     
+     <style>	
+		.round-border {
+			border: 1px solid #eee;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			padding: 10px;
+			margin-bottom: 5px;
+		}
+		</style>  
+        <title>Welcome to Compro online application</title>
+    </h:head>
+
+    <h:body>
+ <div class="container">
+     <header>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>
+				
+            </header>
+                <section>
+             <div id="container_demo" >
+                  <div id="wrapper">
+                      <div id="application" class="animate form" style="width:130%;">
+
+<h:form>    
+                                                   
+    <p>
+                                 <h:outputLabel for="applicantId" value="Enter User Id : " /> 
+                                 <p:inputText id="mname" value="#{tableBean.userId}" label="Applicant Id">
+		     			<f:validateLength minimum="1" /> 
+                                </p:inputText>
+		     		<h:message id="mnameMsg" for="mname" style="color: red"/>
+    </p>
+    <p>
+                            <p:commandButton id="searchApplication" value="Search" action="#{tableBean.searchApplication(tableBean.userId)}" ajax="false"/>
+                            <p:commandButton id="home" value="Home" action="home" ajax="false"/>
+    </p>                        
+                                      
+                                                                 
+                                     <c:forEach var="section" items="${tableBean.applicationTemplate.sections}">
+                                
+                                            <section class="round-border">
+                                                <div id="">                                  
+                                                    <label style="font-size: 20px; text-decoration-line: underline">${section.name}</label>
+                                               
+                                                    <c:forEach var="field" items="${section.fields}">
+                                                         
+                                                        <p>
+                                                            <label> #{field.name}:</label>
+                                                            <input type="text" style="height: 30px;width:150px;" name="#{field.id}" id="#{field.id}"  value="#{tableBean.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}"  readonly="readonly"></input>
+                                                        </p>
+                                                          
+                                                    </c:forEach>   
+                                                
+                                                </div>
+                                            </section>
+                                  
+                                        </c:forEach>
+
+                       
+                           
+                       </h:form>
+                      </div>
+                  </div>
+             </div>
+         </section>
+    </div>
+    </h:body>
+</html>

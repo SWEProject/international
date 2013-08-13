@@ -9,100 +9,104 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
-        <link href="./../resources/css/tableLayout.css" rel="stylesheet" type="text/css" />
+         <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"  />
+     
+     <style>	
+		.round-border {
+			border: 1px solid #eee;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			padding: 10px;
+			margin-bottom: 5px;
+		}
+		</style>  
         <title>Welcome to Compro online application</title>
     </h:head>
 
     <h:body>
-     <table cellspacing="10px">
-            <tr>
-                <td id="top" colspan="2">
-                    <ui:insert name="top"><h3>Compro online application</h3></ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="left">
-                    <ui:insert name="left"></ui:insert>
-                </td>
-                <td id="content">
-                    <ui:insert name="content">
+ <div class="container">
+     <header>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>
+				
+            </header>
+                <section>
+             <div id="container_demo" >
+                  <div id="wrapper">
+                      <div id="application" class="animate form" style="width:130%;">
                         <h:form>    
                             
-                            
-                            
-                           <table>
-                                          <tr> Student Current Disposition::<h:outputText value="#{tableBean.disposition}" />
-                                               &nbsp;&nbsp;&nbsp;
-                                               Change Disposition::<h:selectOneMenu value="#{tableBean.disposition}">
+                            <p>
+                                <h:outputLabel for="cdisposition" value="student Current Disposition : " />
+                                <h:outputText id="cdisposition" value="#{tableBean.disposition}" />
+                            </p>
+                            <p>
+                                 <h:outputLabel value="Change Disposition: " />
+                                <h:selectOneMenu value="#{tableBean.disposition}">
                                                <f:selectItem itemValue="pass" itemLabel="Pass" />
                                                <f:selectItem itemValue="fail" itemLabel="Fail" />
                                                <f:selectItem itemValue="undetermined" itemLabel="Undetermined" />
                                                </h:selectOneMenu>  
-                                            </tr>
-                               <br></br>
-                                            <tr>
-                                                Student Current Application Status::<h:outputText value="#{tableBean.status}" />
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                 Change Status::<h:selectOneMenu value="#{tableBean.status}">
-                                               <f:selectItem itemValue="active" itemLabel="Active" />
-                                               <f:selectItem itemValue="submitted" itemLabel="Submitted" />
-                                                <f:selectItem itemValue="noChange" itemLabel="No Status Change" />
-                                               </h:selectOneMenu>
-                                               </tr>
-                        </table>
+                            </p>
+                            <p>
+                                 <h:outputLabel  value="Student Current Application Status : " />
+                                 <h:outputText value="#{tableBean.status}" />
+                            </p>
+                            <p>
+                               <h:outputLabel  value="Change Status : " />  
+                               <h:selectOneMenu value="#{tableBean.status}">
+                                   <f:selectItem itemValue="active" itemLabel="Active" />
+                                   <f:selectItem itemValue="submitted" itemLabel="Submitted" />
+                                   <f:selectItem itemValue="noChange" itemLabel="No Status Change" />
+                               </h:selectOneMenu>
+                            </p>
                                       
-                                      
-                                        <c:forEach var="section" items="${tableBean.applicationTemplate.sections}">
-                                                <section class="round-border">
+                           
+                                     <c:forEach var="section" items="${tableBean.applicationTemplate.sections}">
+                                
+                                            <section class="round-border">
                                                 <div id="">                                  
                                                     <label style="font-size: 20px; text-decoration-line: underline">${section.name}</label>
-		
+                                               
                                                     <c:forEach var="field" items="${section.fields}">
+                                                         
                                                         <p>
                                                             <label> #{field.name}:</label>
-
-                                                            <c:if test="#{field.type=='string'}">
-                                                                <input type="text" style="height: 30px;" name="#{field.id}" id="#{field.id}"  value="#{tableBean.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}" ></input>
+                                                            <input type="text" style="height: 30px;width:150px;" name="#{field.id}" id="#{field.id}"  value="#{tableBean.applicationForm.fieldsValues.get(field.id)}" label="#{field.name}"  readonly="readonly"></input>
+                                                            <c:if test="#{tableBean.applicationForm.newFieldsValues.get(field.id) != null}">
+                                                            <div id="div_#{field.id}" style='display:show'>
+                                                                Requested value:
+                                                                <input type="text" style="height: 30px;width:150px;" name="c_#{field.id}" id="c_#{field.id}"  value="#{tableBean.applicationForm.newFieldsValues.get(field.id)}" disabled="disabled"></input>
+                                                                <h:commandButton style="height: 30px;width:100px;" id="a_#{field.id}" type="button" value="Approve" onclick="document.getElementById('#{field.id}').value = document.getElementById('c_#{field.id}').value;
+                                                                                        document.getElementById('div_#{field.id}').style.display='none'; " />
+                                                                 <h:commandButton style="height: 30px;width:100px;" id="d_#{field.id}" type="button" value="Disapprove" onclick="document.getElementById('div_#{field.id}').style.display='none'; " />
+                                                            </div>
                                                             </c:if>
-                                                            <c:if test="#{field.type=='date'}">
-                                                                #{tableBean.applicationForm.fieldsValues.get(field.id)}
-                                                                  
-                                                            </c:if>
-                                                            <c:if test="#{field.type=='list'}">
-                                                                <select name="#{field.id}" id="#{field.id}" value="c2">  
-                                                                    <option value=""></option>
-
-                                                                    <c:forEach var="choices" items="${field.choices}">
-                                                                        <c:if test="#{tableBean.applicationForm.fieldsValues.get(field.id)==choices}">
-                                                                            <option value="#{choices}" selected="selected">#{choices}</option>
-                                                                        </c:if>
-                                                                        <c:if test="#{tableBean.applicationForm.fieldsValues.get(field.id)!=choices}">
-                                                                            <option value="#{choices}" >#{choices}</option>  
-                                                                        </c:if>
-                                                                    </c:forEach>
-                                                                </select> 
-                                                            </c:if>
+                                                            
                                                         </p>
-                                                    </c:forEach>                                 
+                                                          
+                                                    </c:forEach>   
+                                                
                                                 </div>
                                             </section>
+                                  
                                         </c:forEach>
-                       <tr>
-                         <td> <p:commandButton id="submitApplication" value="Submit" action="#{tableBean.submitApplication(tableBean.disposition, tableBean.status)}" ajax="false"/></td>
-                       </tr>
+                                     
+                         
+                            <p> 
+                                <p:commandButton id="submitApplication" value="Submit" action="#{tableBean.submitApplication(tableBean.disposition, tableBean.status)}" ajax="false"/>
+                            </p>
+                      
                            
                         </h:form>
-                    </ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="bottom" colspan="2">
-                    <ui:insert name="bottom"></ui:insert>
-                </td>
-            </tr>
-        </table>
-  
+                      </div>
+                  </div>
+             </div>
+         </section>
+    </div>
     </h:body>
 
 </html>

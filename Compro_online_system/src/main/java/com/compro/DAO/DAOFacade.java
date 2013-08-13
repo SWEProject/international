@@ -85,8 +85,8 @@ public class DAOFacade {
        return UserDAO.getAccount(id);
     }
     
-    public boolean changePassword(String password, int id){
-        return UserDAO.changePassword(password, id);
+    public boolean changePassword(User user){
+        return UserDAO.changePassword(user);
        
     }
     

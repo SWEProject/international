@@ -82,15 +82,15 @@ public class UserDAO {
         return user;
     }
     
-    static boolean changePassword(String password, int id){
+        static boolean changePassword(User user){
         
         try{
         con = ConnectionManager.dcConnect();
             con.setAutoCommit(false);
 
             Statement statement = null;
-        String SQL ="update user set pasword='"+password
-                    +"' where id="+id;
+        String SQL ="update user set pasword='"+user.getPassword()
+                    +"' where id="+user.getId();
         statement = con.createStatement();
          int res=   statement.executeUpdate(SQL);
            

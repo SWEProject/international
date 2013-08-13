@@ -88,7 +88,7 @@ public class ApplicationManagedBean implements Serializable {
                         Field f = (Field)sec.getFields().get(j);
                         String fieldKey = f.getId()+"";
                         if(f.getType().equals("date"))
-                            fieldKey="j_idt14:_"+f.getId()+"_input";
+                            fieldKey="j_idt19:_"+f.getId()+"_input";
                         String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(fieldKey);
                         
                         System.out.println(f.getName()+" ----- "+fValue);
@@ -109,7 +109,7 @@ public class ApplicationManagedBean implements Serializable {
                         Field f = (Field)sec.getFields().get(j);
                         String fieldKey = f.getId()+"";
                         if(f.getType().equals("date"))
-                            fieldKey="j_idt14:_"+f.getId()+"_input";
+                            fieldKey="j_idt19:_"+f.getId()+"_input";
                         String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(fieldKey);
                         Map<String, String> parameterMap = (Map<String, String>) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
                         Iterator itr = parameterMap.keySet().iterator();
@@ -165,7 +165,7 @@ public class ApplicationManagedBean implements Serializable {
                         Field f = (Field)sec.getFields().get(j);
                         String fieldKey = f.getId()+"";
                         if(f.getType().equals("date"))
-                            fieldKey="j_idt14:_"+f.getId()+"_input";
+                            fieldKey="j_idt19:_"+f.getId()+"_input";
                         String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(fieldKey);
                         
                         System.out.println(f.getName()+" ----- "+fValue);
@@ -189,7 +189,7 @@ public class ApplicationManagedBean implements Serializable {
                         Field f = (Field)sec.getFields().get(j);
                         String fieldKey = f.getId()+"";
                         if(f.getType().equals("date"))
-                            fieldKey="j_idt14:_"+f.getId()+"_input";
+                            fieldKey="j_idt19:_"+f.getId()+"_input";
                         String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(fieldKey);
                         
                         
@@ -237,7 +237,7 @@ public class ApplicationManagedBean implements Serializable {
                     Field f = (Field)sec.getFields().get(j);
                     String fieldKey = f.getId()+"";
                     if(f.getType().equals("date"))
-                        fieldKey="j_idt14:_"+f.getId()+"_input";
+                        fieldKey="j_idt19:_"+f.getId()+"_input";
                     String fValue = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(fieldKey);
                             
                     if(!fValue.equals(appForm.getFieldsValues().get(f.getId())))

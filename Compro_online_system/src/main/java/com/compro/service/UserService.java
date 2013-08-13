@@ -82,19 +82,13 @@ public class UserService implements IUserService {
             return user;
         }
         
-        @Transactional(readOnly = false)
-        public boolean changePassword(int id){
+       @Transactional(readOnly = false)
+        public boolean changePassword(User user){
             
             try{
-                String p = PasswordGenerator.getPassword(6);
-                boolean val=facadeDAO.changePassword(p, id);
-                if(val){
-                     User user=new User();
-                    user=facadeDAO.getAccount(id);
-                  SendMail sendMail=new SendMail("cs425.intl@gamil.com", user.getEmail(),"Mum application password","Dear "+user.getName()+"\n please use the below password to login.\n"+p);
-                 sendMail.send();  
-                }
-                return val;
+               
+         
+                return facadeDAO.changePassword(user);
             }catch (Exception ex) {
                 Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -105,8 +99,18 @@ public class UserService implements IUserService {
            
             try{
                User user=facadeDAO.getUserByEamil(email);
+              
+               
                 if(user!=null){
-                  return changePassword(user.getId()); 
+                     String p = PasswordGenerator.getPassword(6);
+               user.setPassword(p);
+                boolean val=facadeDAO.changePassword( user);
+                if(val){
+                    
+                  SendMail sendMail=new SendMail("cs425.intl@gamil.com", user.getEmail(),"Mum application password","Dear "+user.getName()+"\n please use the below password to login.\n"+user.getPassword());
+                 sendMail.send();  
+                }
+                  return val; 
                 }
              }catch (Exception ex) {
                 Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
