@@ -7,13 +7,25 @@
  <h:head><title>Welcome to Compro online application</title></h:head>  
  <body>  
  <f:view>  
-     <h:form>  
+     <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"/>
+
+         <div class="container">
+           <header>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>	
+           </header>
+           <section>
+        <div id="container_demo" >
+                   
+       <div id="wrapper">
+        <h:form>  
          <c:if test="#{userMB.message=='register'}">
              <h2><h:outputText value="User already exists!"></h:outputText> </h2> 
              <p:commandButton id="back" value="Back" action="register" ajax="false"/>
          </c:if>
          <c:if test="#{userMB.message=='login'}">
-             <h2><h:outputText value="Login failed!"></h:outputText> </h2> 
+             <p><h2><h:outputText style="font-size: 14" value="Login failed!"></h:outputText> </h2>  </p> 
              <p:commandButton id="back" value="Back" action="index" ajax="false"/>
          </c:if>
          <c:if test="#{userMB.message=='change password'}">
@@ -24,7 +36,11 @@
              <h2><h:outputText value="Can not change password!"></h:outputText> </h2> 
              <p:commandButton id="back" value="Back" action="index" ajax="false"/>
          </c:if>
-     </h:form>  
+      </h:form>
+    </div>
+   </div>
+  </section>
+   </div>
  </f:view>  
 </body>    
 </html> 

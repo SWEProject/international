@@ -7,16 +7,34 @@
 	<title>Welcome to Compro online application</title>
 </h:head>
 <h:body>
+    <h:outputStylesheet library="css" name="demo.css"  />
+     <h:outputStylesheet library="css" name="style.css" />
+     <h:outputStylesheet library="css" name="animate-custom.css"/>
+
+                <div class="container">
+                     <header>
+                <h1>Maharishi University<span> Computer Science Program</span></h1>	
+           </header>
+             <section>
+               <div id="container_demo" >
+                   
+                  <div id="wrapper">
     <h:form>  
 	<c:if test="#{userMB.message=='change password'}">
-             <h2><h:outputText value="password changed!"></h:outputText> </h2> 
+            <h2><h:outputText style="font-size: 14" value="password changed!"></h:outputText> </h2> 
              <p:commandButton id="back" value="Back" action="account" ajax="false"/>
          </c:if>
          <c:if test="#{userMB.message=='forgot password'}">
              <h2><h:outputText value="password reset please check your email!"></h:outputText> </h2> 
              <p:commandButton id="back" value="Back" action="index" ajax="false"/>
-         </c:if>     
-    </h:form>	
+         </c:if> 
+       
+    </h:form>
+                  </div>
+               </div>
+             </section>
+                </div>
+                     
 </h:body>
 
 </html>
