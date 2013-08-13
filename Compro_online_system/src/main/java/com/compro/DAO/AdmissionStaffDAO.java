@@ -58,7 +58,7 @@ public class AdmissionStaffDAO {
                 }
             }
             con.commit();
-
+            con.close();
         } 
         
         catch (Exception e) {
@@ -104,7 +104,7 @@ public class AdmissionStaffDAO {
                 }
             }
             con.commit();
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -165,7 +165,7 @@ public class AdmissionStaffDAO {
 
             System.out.println("xxx"+applicationForm.getFieldsValues().size());
             con.commit();
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -219,7 +219,7 @@ public class AdmissionStaffDAO {
             
             
             con.commit();
-
+con.close();
         } 
         
         catch (Exception e) {

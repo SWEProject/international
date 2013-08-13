@@ -59,7 +59,7 @@ public class UserDAO {
             } 
                 
         con.commit();
-            
+              con.close();
         } 
         catch (Exception e) 
         {
@@ -99,6 +99,8 @@ public class UserDAO {
              return true;
             
             }
+            
+            con.close();
         }catch(Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -148,7 +150,7 @@ public class UserDAO {
             } 
                 
         con.commit();
-            
+            con.close();
         } 
         catch (Exception e) 
         {

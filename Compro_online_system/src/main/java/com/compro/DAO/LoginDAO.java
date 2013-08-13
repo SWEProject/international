@@ -66,7 +66,7 @@ class LoginDAO {
             } 
           
             con.commit();
-            
+            con.close();
         } 
         catch (Exception e) 
         {
@@ -120,7 +120,7 @@ class LoginDAO {
             } 
           
             con.commit();
-            
+            con.close();
         } 
         catch (Exception e) 
         {
@@ -175,7 +175,7 @@ class LoginDAO {
             } 
           
             con.commit();
-            
+            con.close();
         } 
         catch (Exception e) 
         {

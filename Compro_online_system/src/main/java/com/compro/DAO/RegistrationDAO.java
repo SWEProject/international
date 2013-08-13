@@ -68,7 +68,7 @@ public class RegistrationDAO
             return false;
                 
         con.commit();
-            
+            con.close();
         } 
         catch (Exception e) 
         {

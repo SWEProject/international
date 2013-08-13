@@ -50,7 +50,7 @@ public class ApplicationDAO {
                 }
             }
             con.commit();
-
+            con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -93,7 +93,7 @@ public class ApplicationDAO {
 
 
             con.commit();
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -149,7 +149,7 @@ public class ApplicationDAO {
             }
 
             con.commit();
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -192,7 +192,7 @@ public class ApplicationDAO {
                 }
             }
             con.commit();
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -248,7 +248,7 @@ public class ApplicationDAO {
 
             System.out.println("xxx"+applicationForm.getFieldsValues().size());
             con.commit();
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -308,7 +308,7 @@ public class ApplicationDAO {
             }
             
             saved = true;
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -355,7 +355,7 @@ public class ApplicationDAO {
             }
             
             saved = true;
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -393,7 +393,7 @@ public class ApplicationDAO {
             statement.executeUpdate(SQL);
             con.commit();
             saved = true;
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -454,7 +454,7 @@ public class ApplicationDAO {
             
             con.commit();
             saved = true;
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -623,6 +623,7 @@ public class ApplicationDAO {
                 }
             }
             con.commit();
+            con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
@@ -739,7 +740,7 @@ public class ApplicationDAO {
             
             con.commit();
             saved = true;
-
+con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (con != null) {
