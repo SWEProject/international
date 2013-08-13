@@ -1,0 +1,30 @@
+/* 
+    Document   : table-style
+    Created on : Aug 12, 2013, 6:01:28 PM
+    Author     : Nesanet
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.application-table{   
+	border-collapse:collapse;
+}
+ 
+.application-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+ 
+.application-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+ 
+.application-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+
